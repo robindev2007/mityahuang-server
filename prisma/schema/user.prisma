@@ -1,0 +1,58 @@
+model User {
+    id                    String    @id @default(auto()) @map("_id") @db.ObjectId
+    email                 String    @unique
+    password              String
+    role                  UserRole  @default(MEMBER)
+    isVerified            Boolean   @default(false) // verified by email
+    isBlocked             Boolean   @default(false) // is user Blocked by the system or not
+    lastPasswordChangedAt DateTime  @default(now()) // extra security check for changing password.Password changes shouldn't be before token issued
+    otp                   Int?
+    otpExpires            DateTime? // 10m see the env - JWT_OTP_EXPIRES_IN
+    createdAt             DateTime  @default(now())
+    updatedAt             DateTime  @updatedAt
+
+    // 1-to-1 relationship
+    profile Profile?
+    // 1-to-m relationship
+    address Address[]
+
+    @@map("users")
+}
+
+model Profile {
+    id          String    @id @default(auto()) @map("_id") @db.ObjectId
+    firstName   String
+    lastName    String
+    memberId    String    @unique
+    userImage   String    @default("")
+    gender      Gender?
+    dateOfBirth DateTime?
+    phoneNumber String?
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+
+    // Relationship
+    //1-to-1 relationship
+    userId String @unique @db.ObjectId
+    user   User   @relation(fields: [userId], references: [id])
+
+    @@map("profile")
+}
+
+model Address {
+    id          String       @id @default(auto()) @map("_id") @db.ObjectId
+    country     String
+    city        String?
+    street      String?
+    state       String?
+    apartment   String?
+    addressType AddressType? // Enum for HOME, WORK
+    coordinates Json? // { lat: number, lng: number } for maps integration
+    isDefault   Boolean      @default(false)
+    createdAt   DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
+
+    // 1-to-m relationship
+    userId String @db.ObjectId
+    user   User   @relation(fields: [userId], references: [id])
+}

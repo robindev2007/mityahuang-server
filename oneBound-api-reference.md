@@ -1,0 +1,133 @@
+## Login credentials
+
+- userId: 13480151373
+- pwd: aaa123123
+
+---
+
+- Secret Key: 13735c58
+- Key: t3480151373
+
+## Api play ground - [`click`](https://open.onebound.cn/test/?key=t3480151373&secret=13735c58)
+
+### All types of api's endpoints
+
+- `item`\_get - Get Taobao product details
+- `item`\_get_app - Get the original data of Taobao app product details
+- `item`\_get_app_pc - Get the original data of Taobao app product details
+- `item`\_get_app_pro - Get the original data of Taobao app product details
+- `item`\_video - Get Taobao product videos
+- `item`\_get_pro - Get Taobao Product Details Premium
+- `item`\_review - Get Taobao product reviews
+- `item`\_review_show - Get Taobao Buyer Show
+- `item`\_video_barrage - get Taobao live room barrage
+- `item`\_get_desc - get Taobao product description
+- `item`\_sync_add - Merchandise Delivery
+- `item`\_sync_get - Merchandise acquisition
+- `item`\_get_title - get the title of Taobao product
+- `item`\_link - Taobao link conversion
+- `item`\_get_sales - get product sales details
+- `item`\_sku - get skudetails
+- `item`\_fee - Get Taobao product express delivery fees
+- `item`\_password - get the Tao password real url
+- `item`\_password_vip - get the Tao password real url
+- `cat_get` - get Taobao classification details
+- `cat_get_app` - Taobao app classification interface
+- `item`\_cat_get - get the Taobao product category
+- `item`\_list_weight - get product info in bulk
+- `item`\_history_price - get historical price info for goods
+- `item`\_list_updown - Get Taobao product removal time in batches
+- `seller_info` - get Taobao store details
+- `shop_info_app` - get details of the Taobao app version of the store
+- `get_seller_id` - Get Taobao seller ID
+- `item`\_search - Search Taobao products by keyword
+- `item`\_search_tmall - Search Tmall products by keyword
+- `item`\_search_jnpiter - Search Taote product list by keyword
+- `item`\_search_pro - Advanced keyword search for Taobao products
+- `item`\_search_img - Search Taobao products by image (Pa Li Tao)
+- `item`\_search_shop - Get all products of a shop
+- `item`\_search_seller - Search shop list
+- `item`\_search_guang - Love to browse streets
+- `item`\_search_suggest - Get search term recommendations
+- `item`\_search_jupage - Daily special offers
+- `item`\_search_coupon - Coupon inquiry
+- `item`\_search_samestyle - Search for similar style products
+- `item`\_search_similar - Search for similar products
+- `item`\_search_neighbors - Neighbor's good deals
+- `item`\_recommend - Get recommended product list
+- `tbk_order_query` - Taobao affiliate order query
+- `item`\_videolist - Search Taobao live streaming interface by category
+- `item`\_videolist_cat - Get Taobao live streaming category ID interface
+- `item`\_search_best - Tmall best-seller list
+- `item`\_search_cat - Taobao app category filter product list interface
+- `item`\_question_answer - Taobao comment Q&A list interface
+- `item`\_question_answer_info - Taobao comment Q&A interface
+- `item`\_half - Daily half-price interface
+- `item`\_search_limit - Get Taobao one-yuan purchase product list
+- `item`\_search_shop_sellerid - Get all products of a shop by seller ID
+- `upload_img` - Upload image to Taobao
+- `img2text` - Image recognition product interface
+- `upload_img_vip` - Upload image to Taobao
+- `brand_cat` - Get brand category list
+- `brand_cat_top` - Get category recommended brand list
+- `brand_cat_list` - Get brand list for specified category
+- `brand_keyword_list` - Get brand list for specified keyword
+- `brand_info` - Get brand related information
+- `brand_product_list` - Get products for specified brand
+- `custom` - Custom API operation
+- `buyer_cart_add` - Add to shopping cart
+- `buyer_cart_add_app` - Add to shopping cart
+- `buyer_cart_remove` - Remove `item` from shopping cart
+- `buyer_cart_clear` - Clear shopping cart
+- `buyer_cart_list` - Get shopping cart `item` list
+- `buyer_cart_order` - Save shopping cart `item`s as order
+- `buyer_order_list` - Get purchased `item` order list
+- `buyer_order_list_app` - Get purchased `item` order list
+- `buyer_order_detail_app` - Item order details
+- `buyer_order_detail` - Get purchased item order details
+- `buyer_order_express` - Get purchased item order logistics
+- `buyer_order_message` - Get purchased order buyer message
+- `buyer_address_list` - Shipping address list
+- `buyer_address_clear` - Clear shipping address
+- `buyer_address_remove` - Remove shipping address
+- `buyer_address_modify` - Modify shipping address
+- `buyer_address_add` - Add shipping address
+- `buyer_footmark_list` - My footprints
+- `buyer_favorite_list` - My favorites
+- `buyer_favorite_shop_list` - My favorite shops
+- `buyer_info` - Buyer information
+- `buyer_token` - Buyer token
+- `buyer_token_check` - Buyer token check
+- `buyer_token_create` - Get token
+- `buyer_token_qrcode` - Get [Scan QR code to log in] QR code picture
+- `buyer_token_qrcode_ck` - Get token [scan code to log in]
+- `seller_order_list` - Get a list of orders for items sold
+- `seller_order_detail` - Get details of orders for items sold
+- `seller_order_address` - Get details of the item order sold
+- `seller_order_close` - The seller closes a transaction
+- `seller_order_message` - Get or modify the notes for the order sold
+- `seller_order_send` - Order shipping
+- `seller_delivery_tpl_list` - Shipping template list
+- `seller_delivery_tpl_add` - Shipping Template New
+- `seller_delivery_tpl_copy` - Shipping Template Copy
+- `seller_delivery_tpl_modify` - Shipping Template Repair
+- `seller_delivery_tpl_del` - Shipping Template Removal
+- `seller_auction_list` - List of items that can be listed and removed from shelves
+- `seller_auction` - Goods on and off the shelf
+- `seller_item_add` - Product upload
+- `seller_img_list` - Seller picturespace material list
+- `seller_img_add` - Seller pictures add
+- `seller_img_del` - Seller image delete
+- `seller_img_dir_list` - Seller pictures directory listing
+- `seller_img_dir_add` - Seller pictures directory add
+- `seller_img_dir_del` - Seller pictures directory delete
+- `seller_cat_props` - Goods classification properties
+- `product_add` - Product_add - Seller Shop Add Baby
+
+---
+
+## Docs list
+
+- [Readme](https://open.onebound.cn/help/api/taobao.readme.html)
+- [console](https://console.open.onebound.cn/console/)
+- [Tester](https://open.onebound.cn/test/?key=t3480151373&secret=13735c58)

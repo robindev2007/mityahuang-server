@@ -1,0 +1,23 @@
+enum UserStatus {
+    ONLINE
+    OFFLINE
+}
+
+enum UserRole {
+    SUPER_ADMIN
+    ADMIN
+    WAREHOUSE_STAFF // should read Warehouse Staff
+    PURCHASING_AGENT
+    MEMBER // every logged in user will be member
+}
+
+enum Gender {
+    MALE
+    FEMALE
+    OTHERS
+}
+
+enum AddressType {
+    HOME
+    WORK
+}

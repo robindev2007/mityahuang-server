@@ -1,0 +1,665 @@
+{
+	"info": {
+		"_postman_id": "33620786-747f-4c56-97a8-db1b4894f3b3",
+		"name": "Mitya Huang Logistic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32331018"
+	},
+	"item": [
+		{
+			"name": "🦧 Users",
+			"item": [
+				{
+					"name": "Get users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dev_v1}}/users",
+							"host": [
+								"{{dev_v1}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "isVerified",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Retrieve users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{dev_v1}}/users",
+									"host": [
+										"{{dev_v1}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "668"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29c-26gZl2q2diHC9XqMo0cWK2LW14o\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Aug 2025 09:00:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"All users retrieved successfully\",\n    \"data\": {\n        \"meta\": {\n            \"totalCount\": 2,\n            \"totalPages\": 1,\n            \"page\": 1,\n            \"limit\": 10\n        },\n        \"result\": [\n            {\n                \"id\": \"68908f44ed1787041eb7debf\",\n                \"email\": \"super@admin.com\",\n                \"role\": \"SUPER_ADMIN\",\n                \"isVerified\": true,\n                \"lastPasswordChangedAt\": \"2025-08-04T10:45:24.552Z\",\n                \"otp\": null,\n                \"otpExpires\": null,\n                \"createdAt\": \"2025-08-04T10:45:24.553Z\",\n                \"updatedAt\": \"2025-08-04T10:45:24.553Z\"\n            },\n            {\n                \"id\": \"689452be472d0f8cf29806c1\",\n                \"email\": \"developer.tanvirhossain@gmail.com\",\n                \"role\": \"MEMBER\",\n                \"isVerified\": false,\n                \"lastPasswordChangedAt\": \"2025-08-07T07:16:14.419Z\",\n                \"otp\": null,\n                \"otpExpires\": null,\n                \"createdAt\": \"2025-08-07T07:16:14.419Z\",\n                \"updatedAt\": \"2025-08-07T07:16:14.419Z\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get single user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dev_v1}}/users/68908f44ed1787041eb7debf",
+							"host": [
+								"{{dev_v1}}"
+							],
+							"path": [
+								"users",
+								"68908f44ed1787041eb7debf"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Retrieve single user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{dev_v1}}/users/68908f44ed1787041eb7debf",
+									"host": [
+										"{{dev_v1}}"
+									],
+									"path": [
+										"users",
+										"68908f44ed1787041eb7debf"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "vary",
+									"value": "Origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "content-length",
+									"value": "436"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Aug 2025 11:36:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User information is retrieved successfully\",\n    \"data\": {\n        \"id\": \"68908f44ed1787041eb7debf\",\n        \"email\": \"super@admin.com\",\n        \"password\": \"$2b$12$9rWewcLZdEWh31GtPMEhZOkvcH8YT96HhvmE/OURiKt6uDXfTMT12\",\n        \"memberId\": \"admin25080449\",\n        \"role\": \"SUPER_ADMIN\",\n        \"isVerified\": true,\n        \"lastPasswordChangedAt\": \"2025-08-04T10:45:24.552Z\",\n        \"otp\": null,\n        \"otpExpires\": null,\n        \"createdAt\": \"2025-08-04T10:45:24.553Z\",\n        \"updatedAt\": \"2025-08-04T10:45:24.553Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get single user by email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dev_v1}}/users/email/:email",
+							"host": [
+								"{{dev_v1}}"
+							],
+							"path": [
+								"users",
+								"email",
+								":email"
+							],
+							"variable": [
+								{
+									"key": "email",
+									"value": "developer.tanvirhossain@gmail.com"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get user by email",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{dev_v1}}/users/email/:email",
+									"host": [
+										"{{dev_v1}}"
+									],
+									"path": [
+										"users",
+										"email",
+										":email"
+									],
+									"variable": [
+										{
+											"key": "email",
+											"value": "developer.tanvirhossain@gmail.com"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "352"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"160-dA+p8SLsNEzqSjYOZvE0kb/311w\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 13 Aug 2025 11:43:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User retrieved successfully\",\n    \"data\": {\n        \"id\": \"689452be472d0f8cf29806c1\",\n        \"email\": \"developer.tanvirhossain@gmail.com\",\n        \"role\": \"MEMBER\",\n        \"isVerified\": false,\n        \"lastPasswordChangedAt\": \"2025-08-07T07:16:14.419Z\",\n        \"isBlocked\": false,\n        \"otp\": null,\n        \"otpExpires\": null,\n        \"createdAt\": \"2025-08-07T07:16:14.419Z\",\n        \"updatedAt\": \"2025-08-07T07:16:14.419Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"email\": \"developer.tanvirhossain@gmail.com\",\n        \"password\": \"123456\",\n        \"role\": \"MEMBER\"   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_v1}}/users/create",
+							"host": [
+								"{{dev_v1}}"
+							],
+							"path": [
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🛒 Taobao Products",
+			"item": [
+				{
+					"name": "item_get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dev_v1}}/taobao/item_get/?num_iid=652874751412&is_promotion=1",
+							"host": [
+								"{{dev_v1}}"
+							],
+							"path": [
+								"taobao",
+								"item_get",
+								""
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "t3480151373",
+									"disabled": true
+								},
+								{
+									"key": "num_iid",
+									"value": "652874751412"
+								},
+								{
+									"key": "is_promotion",
+									"value": "1"
+								},
+								{
+									"key": "lang",
+									"value": "en",
+									"disabled": true
+								},
+								{
+									"key": "secret",
+									"value": "13735c58",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Retrieve users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{dev_v1}}/users",
+									"host": [
+										"{{dev_v1}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "vary",
+									"value": "Origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "content-length",
+									"value": "424"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Aug 2025 11:04:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"All users retrieved successfully\",\n    \"data\": {\n        \"meta\": {\n            \"totalCount\": 1,\n            \"totalPages\": 1,\n            \"page\": 1,\n            \"limit\": 10\n        },\n        \"result\": [\n            {\n                \"id\": \"68908f44ed1787041eb7debf\",\n                \"email\": \"super@admin.com\",\n                \"memberId\": \"admin25080449\",\n                \"role\": \"SUPER_ADMIN\",\n                \"isVerified\": true,\n                \"lastPasswordChangedAt\": \"2025-08-04T10:45:24.552Z\",\n                \"otp\": null,\n                \"otpExpires\": null,\n                \"createdAt\": \"2025-08-04T10:45:24.553Z\",\n                \"updatedAt\": \"2025-08-04T10:45:24.553Z\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "⚖️  Exchange rate",
+			"item": [
+				{
+					"name": "Exchange rate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{hello:\"hello\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_v1}}/exchange-rate/create",
+							"host": [
+								"{{dev_v1}}"
+							],
+							"path": [
+								"exchange-rate",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api-gw.onebound.cn/taobao/item_get/?key=t3480151373&num_iid=652874751412&is_promotion=1&secret=13735c58&lang=en",
+					"protocol": "https",
+					"host": [
+						"api-gw",
+						"onebound",
+						"cn"
+					],
+					"path": [
+						"taobao",
+						"item_get",
+						""
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "t3480151373"
+						},
+						{
+							"key": "num_iid",
+							"value": "652874751412"
+						},
+						{
+							"key": "is_promotion",
+							"value": "1"
+						},
+						{
+							"key": "secret",
+							"value": "13735c58"
+						},
+						{
+							"key": "lang",
+							"value": "en"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Test Tabao api",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api-gw.onebound.cn/taobao/item_get/?key=t3480151373&num_iid=652874751412&is_promotion=1&lang=en&secret=13735c58",
+							"protocol": "https",
+							"host": [
+								"api-gw",
+								"onebound",
+								"cn"
+							],
+							"path": [
+								"taobao",
+								"item_get",
+								""
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "t3480151373"
+								},
+								{
+									"key": "num_iid",
+									"value": "652874751412"
+								},
+								{
+									"key": "is_promotion",
+									"value": "1"
+								},
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "secret",
+									"value": "13735c58"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Aug 2025 08:38:00 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;Charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, OPTIONS"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"item\": {\n        \"num_iid\": \"652874751412\",\n        \"title\": \"Cream style fabric sofa, modern and simple, light luxury small unit living room, straight row, detachable and washable sofa, wooden and customizable\",\n        \"desc_short\": \"\",\n        \"price\": \"480.00\",\n        \"total_price\": 0,\n        \"suggestive_price\": 0,\n        \"orginal_price\": \"480.00\",\n        \"nick\": \"佑安居\",\n        \"num\": 1513,\n        \"min_num\": 0,\n        \"detail_url\": \"https://item.taobao.com/item.htm?id=652874751412\",\n        \"pic_url\": \"//img.alicdn.com/imgextra/i4/2568161054/O1CN01aYBriY1Jem9UDtt9e_!!2568161054.jpg\",\n        \"brand\": \"#0 工厂\",\n        \"brandId\": null,\n        \"rootCatId\": null,\n        \"cid\": \"50020632\",\n        \"crumbs\": [],\n        \"created_time\": \"\",\n        \"modified_time\": \"\",\n        \"delist_time\": \"\",\n        \"desc\": \"<div style=\\\"width: 750.0px;height: 10575.0px;overflow: hidden;\\\">\\n<div style=\\\"width: 750.0px;height: 10575.0px;overflow: hidden;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i3/2568161054/O1CN01LFmSOU1Jem9QOjMPb_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i3/2568161054/O1CN014vyOOT1Jem9DpHz3Y_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i1/2568161054/O1CN01B3PpsA1Jem9N8V7uf_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i2/2568161054/O1CN015JbyeY1Jem9MZshUt_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i1/2568161054/O1CN01HXSoxx1Jem9RvgzHN_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i3/2568161054/O1CN01IEultA1Jem9MdEx8R_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i3/2568161054/O1CN0176K98O1Jem9QOjE69_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i4/2568161054/O1CN013Pxp1O1Jem9RvgeTv_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i1/2568161054/O1CN01SfyZ8M1Jem9QOi1Gx_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i4/2568161054/O1CN01bb1POa1Jem9Sdgve2_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i3/2568161054/O1CN018Eo9dV1Jem9KV0y79_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i1/2568161054/O1CN01vuEofr1Jem9Nzy9xY_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i4/2568161054/O1CN01qw9sAi1Jem8wkNKpy_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i1/2568161054/O1CN01HeFhFw1Jem8rLnjBY_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i2/2568161054/O1CN01SNgjoi1Jem9QOil15_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i2/2568161054/O1CN01RXf3RA1Jem9DpHVwj_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i4/2568161054/O1CN01gZmZjt1Jem9ISThgm_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i2/2568161054/O1CN01YL0FHM1Jem9PQTjX9_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"><img src=\\\"https://img.alicdn.com/imgextra/i4/2568161054/O1CN01UhsEhZ1Jem8yvJIhZ_!!2568161054.jpg\\\" style=\\\"display: block;width: 100.0%;\\\"></div>\\n</div><img src=\\\"https://www.o0b.cn/i.php?t.png&rid=gw-3.6891c2e8136f0&p=3069991521&k=51373&t=1754383080\\\" style=\\\"display:none\\\" />\",\n        \"desc_img\": [\n            \"https://img.alicdn.com/imgextra/i3/2568161054/O1CN01LFmSOU1Jem9QOjMPb_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i3/2568161054/O1CN014vyOOT1Jem9DpHz3Y_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i1/2568161054/O1CN01B3PpsA1Jem9N8V7uf_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i2/2568161054/O1CN015JbyeY1Jem9MZshUt_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i1/2568161054/O1CN01HXSoxx1Jem9RvgzHN_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i3/2568161054/O1CN01IEultA1Jem9MdEx8R_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i3/2568161054/O1CN0176K98O1Jem9QOjE69_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i4/2568161054/O1CN013Pxp1O1Jem9RvgeTv_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i1/2568161054/O1CN01SfyZ8M1Jem9QOi1Gx_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i4/2568161054/O1CN01bb1POa1Jem9Sdgve2_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i3/2568161054/O1CN018Eo9dV1Jem9KV0y79_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i1/2568161054/O1CN01vuEofr1Jem9Nzy9xY_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i4/2568161054/O1CN01qw9sAi1Jem8wkNKpy_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i1/2568161054/O1CN01HeFhFw1Jem8rLnjBY_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i2/2568161054/O1CN01SNgjoi1Jem9QOil15_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i2/2568161054/O1CN01RXf3RA1Jem9DpHVwj_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i4/2568161054/O1CN01gZmZjt1Jem9ISThgm_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i2/2568161054/O1CN01YL0FHM1Jem9PQTjX9_!!2568161054.jpg\",\n            \"https://img.alicdn.com/imgextra/i4/2568161054/O1CN01UhsEhZ1Jem8yvJIhZ_!!2568161054.jpg\"\n        ],\n        \"item_imgs\": [\n            {\n                \"url\": \"//img.alicdn.com/imgextra/i4/2568161054/O1CN01aYBriY1Jem9UDtt9e_!!2568161054.jpg\"\n            },\n            {\n                \"url\": \"//img.alicdn.com/imgextra/i3/2568161054/O1CN01kjOfNb1Jem9DmWn8Y_!!2568161054.jpg\"\n            },\n            {\n                \"url\": \"//img.alicdn.com/imgextra/i1/2568161054/O1CN01HoB9ha1Jem9DmWn8r_!!2568161054.jpg\"\n            },\n            {\n                \"url\": \"//img.alicdn.com/imgextra/i4/2568161054/O1CN011PjP2P1Jem9MXEUFT_!!2568161054.jpg\"\n            },\n            {\n                \"url\": \"//img.alicdn.com/imgextra/i3/2568161054/O1CN01KUfBFL1Jem9KTTMn1_!!2568161054.jpg\"\n            }\n        ],\n        \"item_weight\": \"\",\n        \"item_size\": \"\",\n        \"location\": \"江苏南通\",\n        \"post_fee\": null,\n        \"express_fee\": null,\n        \"ems_fee\": \"\",\n        \"shipping_to\": \"\",\n        \"has_discount\": \"false\",\n        \"video\": {\n            \"url\": \"https://cloud.video.taobao.com/play/u/2568161054/p/2/e/6/t/1/428224913062.mp4?appKey=38829\"\n        },\n        \"is_virtual\": \"\",\n        \"sample_id\": \"\",\n        \"is_promotion\": \"false\",\n        \"props_name\": \"31480:14306495906:How many people sit:Foot pedal 90 * 60 * 48cm;31480:14306495907:How many people sit:双人65*95*67cm;31480:14306495908:How many people sit:三人0*95*67cm;31480:14306495909:How many people sit:单人00*95*67cm;31480:21480914361:How many people sit:四人位40*95*67cm;31480:21480914362:How many people sit:大四人0*95*76cm;31480:1387571900:How many people sit:米贵妃沙发;31480:32527954:How many people sit:Custom size;1627207:28321:Color classification:Milk white size and color can be customized\",\n        \"prop_imgs\": {\n            \"prop_img\": [\n                {\n                    \"properties\": \"1627207:28321\",\n                    \"url\": \"http://img.alicdn.com/imgextra/i1/2568161054/O1CN017GTZ4h1Jem9Qra1ap_!!2568161054.jpg\"\n                }\n            ]\n        },\n        \"property_alias\": \"31480:14306495906:How many people sit:Foot pedal 90 * 60 * 48cm;31480:14306495907:How many people sit:双人65*95*67cm;31480:14306495908:How many people sit:三人0*95*67cm;31480:14306495909:How many people sit:单人00*95*67cm;31480:21480914361:How many people sit:四人位40*95*67cm;31480:21480914362:How many people sit:大四人0*95*76cm;31480:1387571900:How many people sit:米贵妃沙发;31480:32527954:How many people sit:Custom size;1627207:28321:Color classification:Milk white size and color can be customized\",\n        \"props\": [\n            {\n                \"name\": \"brand\",\n                \"value\": \"#0 factory\"\n            },\n            {\n                \"name\": \"model\",\n                \"value\": \"520\"\n            },\n            {\n                \"name\": \"texture of material\",\n                \"value\": \"wood\"\n            },\n            {\n                \"name\": \"Wood material\",\n                \"value\": \"pine\"\n            },\n            {\n                \"name\": \"Fabric\",\n                \"value\": \"flannelette\"\n            },\n            {\n                \"name\": \"style\",\n                \"value\": \"Northern Europe\"\n            },\n            {\n                \"name\": \"How many people sit\",\n                \"value\": \"脚踏90*60*48cm,双人65*95*67cm,三人0*95*67cm,单人00*95*67cm,四人位40*95*67cm,大四人0*95*76cm,米贵妃沙发,定制尺寸\"\n            },\n            {\n                \"name\": \"Color classification\",\n                \"value\": \"milky white\"\n            },\n            {\n                \"name\": \"Filler\",\n                \"value\": \"Sponge\"\n            },\n            {\n                \"name\": \"Structural process\",\n                \"value\": \"Wood craft\"\n            },\n            {\n                \"name\": \"Is it customizable\",\n                \"value\": \"yes\"\n            },\n            {\n                \"name\": \"Sofa combination form\",\n                \"value\": \"U shape\"\n            },\n            {\n                \"name\": \"Is it removable and washable\",\n                \"value\": \"yes\"\n            },\n            {\n                \"name\": \"Applicable object\",\n                \"value\": \"adult\"\n            },\n            {\n                \"name\": \"With storage space\",\n                \"value\": \"no\"\n            },\n            {\n                \"name\": \"Place of Origin\",\n                \"value\": \"Shanghai\"\n            },\n            {\n                \"name\": \"Prefecture and city\",\n                \"value\": \"Shanghai\"\n            },\n            {\n                \"name\": \"district and county\",\n                \"value\": \"Fengxian District\"\n            },\n            {\n                \"name\": \"Assembled or not\",\n                \"value\": \"no\"\n            },\n            {\n                \"name\": \"Can taxis transport\",\n                \"value\": \"no\"\n            },\n            {\n                \"name\": \"Seat cushion hardness grade\",\n                \"value\": \"soft\"\n            },\n            {\n                \"name\": \"Style positioning\",\n                \"value\": \"Economic type\"\n            }\n        ],\n        \"total_sold\": \"2\",\n        \"skus\": {\n            \"sku\": [\n                {\n                    \"price\": 480,\n                    \"total_price\": 0,\n                    \"orginal_price\": 480,\n                    \"properties\": \"31480:14306495906;1627207:28321\",\n                    \"properties_name\": \"31480:14306495906:How many people sit:Foot pedal 90 * 60 * 48cm;1627207:28321:Color classification:Milk white size and color can be customized\",\n                    \"quantity\": 200,\n                    \"sku_id\": \"4881047531343\"\n                },\n                {\n                    \"price\": 1688,\n                    \"total_price\": 0,\n                    \"orginal_price\": 1688,\n                    \"properties\": \"31480:14306495907;1627207:28321\",\n                    \"properties_name\": \"31480:14306495907:How many people sit:双人65*95*67cm;1627207:28321:Color classification:Milk white size and color can be customized\",\n                    \"quantity\": 129,\n                    \"sku_id\": \"4881047531344\"\n                },\n                {\n                    \"price\": 2088,\n                    \"total_price\": 0,\n                    \"orginal_price\": 2088,\n                    \"properties\": \"31480:14306495908;1627207:28321\",\n                    \"properties_name\": \"31480:14306495908:How many people sit:三人0*95*67cm;1627207:28321:Color classification:Milk white size and color can be customized\",\n                    \"quantity\": 184,\n                    \"sku_id\": \"4881047531345\"\n                },\n                {\n                    \"price\": 968,\n                    \"total_price\": 0,\n                    \"orginal_price\": 968,\n                    \"properties\": \"31480:14306495909;1627207:28321\",\n                    \"properties_name\": \"31480:14306495909:How many people sit:单人00*95*67cm;1627207:28321:Color classification:Milk white size and color can be customized\",\n                    \"quantity\": 200,\n                    \"sku_id\": \"4881047531346\"\n                },\n                {\n                    \"price\": 2388,\n                    \"total_price\": 0,\n                    \"orginal_price\": 2388,\n                    \"properties\": \"31480:21480914361;1627207:28321\",\n                    \"properties_name\": \"31480:21480914361:How many people sit:四人位40*95*67cm;1627207:28321:Color classification:Milk white size and color can be customized\",\n                    \"quantity\": 200,\n                    \"sku_id\": \"5039985183001\"\n                },\n                {\n                    \"price\": 3188,\n                    \"total_price\": 0,\n                    \"orginal_price\": 3188,\n                    \"properties\": \"31480:21480914362;1627207:28321\",\n                    \"properties_name\": \"31480:21480914362:How many people sit:大四人0*95*76cm;1627207:28321:Color classification:Milk white size and color can be customized\",\n                    \"quantity\": 200,\n                    \"sku_id\": \"5039985183002\"\n                },\n                {\n                    \"price\": 3400,\n                    \"total_price\": 0,\n                    \"orginal_price\": 3400,\n                    \"properties\": \"31480:1387571900;1627207:28321\",\n                    \"properties_name\": \"31480:1387571900:How many people sit:米贵妃沙发;1627207:28321:Color classification:Milk white size and color can be customized\",\n                    \"quantity\": 200,\n                    \"sku_id\": \"5039984824000\"\n                },\n                {\n                    \"price\": 3000,\n                    \"total_price\": 0,\n                    \"orginal_price\": 3000,\n                    \"properties\": \"31480:32527954;1627207:28321\",\n                    \"properties_name\": \"31480:32527954:How many people sit:Custom size;1627207:28321:Color classification:Milk white size and color can be customized\",\n                    \"quantity\": 200,\n                    \"sku_id\": \"5039985183003\"\n                }\n            ]\n        },\n        \"seller_id\": \"2568161054\",\n        \"sales\": 2,\n        \"shop_id\": \"567158267\",\n        \"props_list\": {\n            \"31480:14306495906\": \"How many people sit:Foot pedal 90 * 60 * 48cm\",\n            \"31480:14306495907\": \"How many people sit:双人65*95*67cm\",\n            \"31480:14306495908\": \"How many people sit:三人0*95*67cm\",\n            \"31480:14306495909\": \"How many people sit:单人00*95*67cm\",\n            \"31480:21480914361\": \"How many people sit:四人位40*95*67cm\",\n            \"31480:21480914362\": \"How many people sit:大四人0*95*76cm\",\n            \"31480:1387571900\": \"How many people sit:米贵妃沙发\",\n            \"31480:32527954\": \"How many people sit:Custom size\",\n            \"1627207:28321\": \"Color classification:Milk white size and color can be customized\"\n        },\n        \"seller_info\": {\n            \"nick\": \"佑安居\",\n            \"zhuy\": \"https://shop567158267.taobao.com/\",\n            \"shop_name\": \"佑安居\"\n        },\n        \"tmall\": false,\n        \"error\": \"\",\n        \"warning\": \"\",\n        \"url_log\": [],\n        \"fav_count\": null,\n        \"fans_count\": null,\n        \"freight\": null,\n        \"props_imgs\": {\n            \"prop_img\": [\n                {\n                    \"properties\": \"1627207:28321\",\n                    \"url\": \"http://img.alicdn.com/imgextra/i1/2568161054/O1CN017GTZ4h1Jem9Qra1ap_!!2568161054.jpg\"\n                }\n            ]\n        },\n        \"_ddf\": \"ykn\",\n        \"promo_type\": null,\n        \"props_img\": {\n            \"1627207:28321\": \"http://img.alicdn.com/imgextra/i1/2568161054/O1CN017GTZ4h1Jem9Qra1ap_!!2568161054.jpg\"\n        },\n        \"format_check\": \"ok\",\n        \"shop_item\": [],\n        \"relate_items\": []\n    },\n    \"error\": \"\",\n    \"secache\": \"4ad7ad2480af253fec9c2fd4daa266bb\",\n    \"secache_time\": 1754380225,\n    \"secache_date\": \"2025-08-05 15:50:25\",\n    \"translate_status\": \"ok\",\n    \"translate_time\": 0.055,\n    \"language\": {\n        \"current_lang\": \"en\",\n        \"source_lang\": \"cn\"\n    },\n    \"reason\": \"\",\n    \"error_code\": \"0000\",\n    \"cache\": 1,\n    \"api_info\": \"today:5 max:100 all[7=5+0+2];expires:2025-08-09\",\n    \"execution_time\": \"0.66\",\n    \"server_time\": \"Beijing/2025-08-05 16:38:00\",\n    \"client_ip\": \"182.252.90.97\",\n    \"call_args\": {\n        \"num_iid\": \"652874751412\",\n        \"is_promotion\": \"1\"\n    },\n    \"api_type\": \"taobao\",\n    \"translate_language\": \"en\",\n    \"translate_engine\": \"baidu\",\n    \"server_memory\": \"4.7MB\",\n    \"request_id\": \"gw-3.6891c2e8136f0\",\n    \"last_id\": \"delay\"\n}"
+				}
+			]
+		},
+		{
+			"name": "👍 API health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7549/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7549",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Health check",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7549/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7549",
+							"path": [
+								"health"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "vary",
+							"value": "Origin"
+						},
+						{
+							"key": "access-control-allow-credentials",
+							"value": "true"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "content-length",
+							"value": "77"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Aug 2025 10:33:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=72"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"healthy\",\n    \"timestamp\": \"2025-08-05T10:33:16.427Z\",\n    \"version\": \"1.0.0\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "prod",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "dev_v1",
+			"value": "http://localhost:7549/api/v1",
+			"type": "string"
+		}
+	]
+}
