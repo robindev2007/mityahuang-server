@@ -31,12 +31,12 @@ app.get("/", async (req, res) => {
   res.status(200).json({ message: "checking API health 👩‍⚕️" });
 });
 
-// TODO => Using routes for whole application
+//  Using routes for whole application
 console.log("Before routes");
 app.use("/api/v1", routes);
 console.log("After routes");
 
-// TODO => Global error handler Function
+//  Global error handler Function
 app.use(globalErrorHandler as any);
 
 // TODO  => Not Found handler route

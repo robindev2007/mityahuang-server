@@ -33,7 +33,6 @@ const globalErrorHandler = (
   let data: any = null;
 
   // 🟢 Taobao API Error Handling (axios response with Taobao error)
-
   if (error?.response?.data?.error && error?.response?.data?.error_code) {
     const taobaoData = error.response.data;
     const mapping = taobaoErrorMap[taobaoData.error_code] || {
@@ -116,14 +115,6 @@ const globalErrorHandler = (
     extraInfo =
       "Can't reach database server. Please make sure it's running and accessible.";
   }
-
-  // 🟢 Custom AppError
-  else if (error instanceof AppError) {
-    statusCode = error.statusCode;
-    message = error.message;
-    errorSources = [{ path: "", message: error.message }];
-  }
-
   // 🟢 Custom TaobaoError
   else if (error instanceof TaobaoError) {
     statusCode = error.statusCode;
@@ -133,6 +124,12 @@ const globalErrorHandler = (
     errorCode = error.taobao.errorCode || "";
     reason = error.taobao.reason || "";
     extraInfo = error.taobao.extraInfo || "";
+  }
+  // 🟢 Custom AppError
+  else if (error instanceof AppError) {
+    statusCode = error.statusCode;
+    message = error.message;
+    errorSources = [{ path: "", message: error.message }];
   }
 
   // 🟢 Generic JS Error

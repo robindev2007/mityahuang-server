@@ -2,14 +2,14 @@ import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import asyncHandler from "../../../../lib/utils/async-handler";
 import sendResponse from "../../../../lib/utils/sendResponse";
-import { UserServices } from "../service/user.service";
+import { userServices } from "../service/user.service";
 
 // ** Crate a user
 const createUser = asyncHandler(async (req: Request, res: Response) => {
-  const result = await UserServices.createUserIntoDb(req.body);
+  const result = await userServices.createUserIntoDb(req.body);
 
   sendResponse(res, {
-    statuscode: StatusCodes.CREATED,
+    statusCode: StatusCodes.CREATED,
     message: "User created successfully",
     success: true,
     data: result,
@@ -18,10 +18,10 @@ const createUser = asyncHandler(async (req: Request, res: Response) => {
 
 // ** retrieve all the users from db
 const getAllUsers = asyncHandler(async (req: Request, res: Response) => {
-  const result = await UserServices.getAllUsersFromDb(req.query);
+  const result = await userServices.getAllUsersFromDb(req.query);
 
   sendResponse(res, {
-    statuscode: StatusCodes.OK,
+    statusCode: StatusCodes.OK,
     message: "All users retrieved successfully",
     success: true,
     data: result,
@@ -31,10 +31,10 @@ const getAllUsers = asyncHandler(async (req: Request, res: Response) => {
 // ** retrieve single user from db
 const getSingleUser = asyncHandler(async (req: Request, res: Response) => {
   const id = req.params.id;
-  const result = await UserServices.getSingeUserFromDb(id);
+  const result = await userServices.getSingeUserFromDb(id);
 
   sendResponse(res, {
-    statuscode: StatusCodes.OK,
+    statusCode: StatusCodes.OK,
     message: "User retrieved successfully",
     success: true,
     data: result,
@@ -45,10 +45,10 @@ const getSingleUser = asyncHandler(async (req: Request, res: Response) => {
 const getSingleUserByMail = asyncHandler(
   async (req: Request, res: Response) => {
     const email = req.params.email;
-    const result = await UserServices.getSingeUserByEmailFromDb(email);
+    const result = await userServices.getSingeUserByEmailFromDb(email);
 
     sendResponse(res, {
-      statuscode: StatusCodes.OK,
+      statusCode: StatusCodes.OK,
       message: "User retrieved successfully",
       success: true,
       data: result,
@@ -59,10 +59,10 @@ const getSingleUserByMail = asyncHandler(
 // ** Update user information
 const updateUser = asyncHandler(async (req: Request, res: Response) => {
   const userId = req.params.id; // which user information need to be updated
-  const result = await UserServices.updateUserInfoFromDb(userId, req.body);
+  const result = await userServices.updateUserInfoFromDb(userId, req.body);
 
   sendResponse(res, {
-    statuscode: StatusCodes.OK,
+    statusCode: StatusCodes.OK,
     message: "User information updated successfully",
     success: true,
     data: result,
@@ -72,10 +72,10 @@ const updateUser = asyncHandler(async (req: Request, res: Response) => {
 // ** Delete users
 const deleteUser = asyncHandler(async (req: Request, res: Response) => {
   const userId = req.params.userId;
-  const result = await UserServices.deleteUserInfoFromDb(userId, req.body);
+  const result = await userServices.deleteUserInfoFromDb(userId, req.body);
 
   sendResponse(res, {
-    statuscode: StatusCodes.OK,
+    statusCode: StatusCodes.OK,
     message: "User deleted successfully!",
     success: true,
     data: result,
@@ -88,10 +88,10 @@ const changeRole = asyncHandler(async (req: Request, res: Response) => {
     email: string;
     role: string;
   };
-  const result = await UserServices.changeUserRoleFromDb(body);
+  const result = await userServices.changeUserRoleFromDb(body);
 
   sendResponse(res, {
-    statuscode: StatusCodes.OK,
+    statusCode: StatusCodes.OK,
     message: "User deleted successfully!",
     success: true,
     data: result,

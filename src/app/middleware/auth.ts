@@ -1,9 +1,9 @@
 import { UserRole } from "@prisma/client";
 import httpStatus, { StatusCodes } from "http-status-codes";
-import { JwtPayload } from "jsonwebtoken";
 import env from "../../config/clean-env";
 import AppError from "../../errors/appError";
 
+import { I_GlobalJwtType } from "../../interface/common.interface";
 import asyncHandler from "../../lib/utils/async-handler";
 import { verifyToken } from "../../lib/utils/auth.utils";
 import prisma from "../../lib/utils/prisma.utils";
@@ -21,7 +21,7 @@ export const authGuard = (...requiredRole: UserRole[]) =>
 
     const token = authorization.split(" ")[1];
 
-    // TODO => if token is available or not
+    // if token is available or not
     if (!token) {
       throw new AppError(
         StatusCodes.UNAUTHORIZED,
@@ -29,33 +29,30 @@ export const authGuard = (...requiredRole: UserRole[]) =>
       );
     }
 
-    // TODO => Verify token
-    const decoded = verifyToken(token, env.JWT_ACCESS_TOKEN);
-
-    // TODO => check if token is valid or not
-    const { role, id, iat } = decoded;
+    //  Verify token
+    const decoded = verifyToken(token, env.JWT_ACCESS_TOKEN) as I_GlobalJwtType;
 
     const user = await prisma.user.findUnique({
       where: {
-        id,
+        id: decoded.id,
       },
     });
 
-    // TODO => check if user exists in DB by id
+    //  check if user exists in DB by id
     if (!user) {
       throw new AppError(httpStatus.NOT_FOUND, "user doesn't exist");
     }
 
     // verify role for authorization
-    if (requiredRole && !requiredRole.includes(role)) {
+    if (requiredRole && !requiredRole.includes(decoded.role)) {
       throw new AppError(
         httpStatus.UNAUTHORIZED,
         "You are not authorized by this role!",
       );
     }
 
-    // TODO => setting the decode value into JwtPayload
-    req.user = decoded as JwtPayload;
+    //  setting the decode value into JwtPayload
+    req.user = decoded as I_GlobalJwtType;
 
     next();
   });

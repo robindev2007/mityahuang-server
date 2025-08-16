@@ -6,6 +6,6 @@ API call test ports. Currently, only these four test ports are open. If testing 
 
 - Search for products by keyword (taobao.item_search)
 
-- Upload images to Taobao (taobao.upload_img)
+- Upload images to Taobao ( )
 
 - Taobao Pailitao (taobao.item_search_img)

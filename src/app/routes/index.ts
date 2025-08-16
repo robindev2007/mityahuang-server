@@ -2,6 +2,7 @@ import { Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import env from "../../config/clean-env";
 import sendResponse from "../../lib/utils/sendResponse";
+import { authRoutes } from "../modules/auth/routes/auth.routes";
 import { taobaoRoutes } from "../modules/taobao/routes/taobao.routes";
 import { UserRoutes } from "../modules/user/routes/user.route";
 
@@ -15,6 +16,10 @@ const routesModule: TRouteModules[] = [
     routes: UserRoutes,
   },
   {
+    path: "/auth",
+    routes: authRoutes,
+  },
+  {
     path: "/taobao",
     routes: taobaoRoutes,
   },
@@ -24,7 +29,7 @@ const routesModule: TRouteModules[] = [
     path: "/route-lists",
     routes: routes.get("/", async (req, res) => {
       sendResponse(res, {
-        statuscode: StatusCodes.OK,
+        statusCode: StatusCodes.OK,
         success: true,
         message: "Route Lists",
         data: routesModule.map(

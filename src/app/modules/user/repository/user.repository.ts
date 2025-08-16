@@ -4,15 +4,16 @@ import { T_UserSchema } from "../types/user.types";
 import { T_ChangeRole } from "../validation/user.validation";
 
 // ** Get the user by mail address
-const getUserByMail = async (email: string) => {
-  return await prisma.user.findUnique({
+const getUserByMail = async (payload: { email: string; omitPwd?: boolean }) => {
+  const result = await prisma.user.findUnique({
     where: {
-      email,
+      email: payload.email,
     },
     omit: {
-      password: true,
+      password: payload.omitPwd ?? true,
     },
   });
+  return result;
 };
 
 // ** Get the user by mail address and role
@@ -139,7 +140,7 @@ const changeUserRole = async (payload: T_ChangeRole["body"]) => {
   });
 };
 
-export const UserRepository = {
+export const userRepository = {
   createUser,
   updateUser,
   getUserByMail,

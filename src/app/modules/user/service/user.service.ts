@@ -2,13 +2,13 @@ import { User } from "@prisma/client";
 import { StatusCodes } from "http-status-codes";
 import AppError from "../../../../errors/appError";
 import { I_PaginationResponse } from "../../../../interface/common.interface";
-import { UserRepository } from "../repository/user.repository";
+import { userRepository } from "../repository/user.repository";
 import { T_UserSchema } from "../types/user.types";
 import { T_ChangeRole } from "../validation/user.validation";
 
 // ** Create user into db
 const createUserIntoDb = async (payload: T_UserSchema) => {
-  const result = await UserRepository.createUser(payload);
+  const result = await userRepository.createUser(payload);
   return result;
 };
 
@@ -21,13 +21,13 @@ const getAllUsersFromDb = async (
   const skip = Number(page - 1) * limit || 0;
 
   // Get the total count of orders (not limited by pagination)
-  const totalCount = await UserRepository.getUsersCount();
+  const totalCount = await userRepository.getUsersCount();
 
   // Calculate totalPages for pagination
   const totalPages = Math.ceil(totalCount / limit);
 
   // getting only the verified users
-  const result = await UserRepository.getPaginatedUsers(limit, skip, query!);
+  const result = await userRepository.getPaginatedUsers(limit, skip, query!);
 
   // pagination return data schema
   const paginationSchema = {
@@ -49,7 +49,7 @@ const getSingeUserFromDb = async (id: string) => {
     throw new AppError(StatusCodes.NOT_FOUND, "User id is required!");
   }
 
-  const result = await UserRepository.getUserById(id);
+  const result = await userRepository.getUserById(id);
 
   // if there is now user exist by the id
   if (!result) {
@@ -65,7 +65,7 @@ const getSingeUserByEmailFromDb = async (email: string) => {
     throw new AppError(StatusCodes.NOT_FOUND, "User email is required!");
   }
 
-  const result = await UserRepository.getUserByMail(email);
+  const result = await userRepository.getUserByMail({ email });
 
   // if there is now user exist by the id
   if (!result) {
@@ -84,7 +84,7 @@ const getUserByEmailFromDb = async (email: string) => {
     throw new AppError(StatusCodes.NOT_FOUND, "User email is required!");
   }
 
-  const result = await UserRepository.getUserByMail(email);
+  const result = await userRepository.getUserByMail({ email });
 
   // if there is now user exist by the email
   if (!result) {
@@ -106,7 +106,7 @@ const updateUserInfoFromDb = async (id: string, payload: Partial<User>) => {
     );
   }
 
-  const isUserExist = await UserRepository.getUserById(id);
+  const isUserExist = await userRepository.getUserById(id);
 
   // if there is now user exist by the email
   if (!isUserExist) {
@@ -126,7 +126,7 @@ const updateUserInfoFromDb = async (id: string, payload: Partial<User>) => {
       "You can't change role by yourself!",
     );
   }
-  const updateUserInfo = await UserRepository.updateUser(id, rest);
+  const updateUserInfo = await userRepository.updateUser(id, rest);
   return updateUserInfo;
 };
 
@@ -140,7 +140,7 @@ const deleteUserInfoFromDb = async (id: string, payload: Partial<User>) => {
     );
   }
 
-  const isUserExist = await UserRepository.getUserById(id);
+  const isUserExist = await userRepository.getUserById(id);
 
   // if there is now user exist by the email
   if (!isUserExist) {
@@ -150,13 +150,15 @@ const deleteUserInfoFromDb = async (id: string, payload: Partial<User>) => {
     );
   }
 
-  const deleteUser = await UserRepository.deleteUserById(id);
+  const deleteUser = await userRepository.deleteUserById(id);
   return deleteUser;
 };
 
 // ** Change role
 const changeUserRoleFromDb = async (payload: T_ChangeRole["body"]) => {
-  const isUserExist = await UserRepository.getUserByMail(payload.email);
+  const isUserExist = await userRepository.getUserByMail({
+    email: payload.email,
+  });
 
   // if there is now user exist by the email
   if (!isUserExist) {
@@ -166,11 +168,11 @@ const changeUserRoleFromDb = async (payload: T_ChangeRole["body"]) => {
     );
   }
 
-  const updateUserRole = await UserRepository.changeUserRole(payload);
+  const updateUserRole = await userRepository.changeUserRole(payload);
   return updateUserRole;
 };
 
-export const UserServices = {
+export const userServices = {
   getAllUsersFromDb,
   createUserIntoDb,
   getSingeUserFromDb,

@@ -21,3 +21,10 @@ enum AddressType {
     HOME
     WORK
 }
+
+enum OauthMethod {
+    EMAIL_PASS
+    GOOGLE
+    FACEBOOK
+    APPLE
+}
