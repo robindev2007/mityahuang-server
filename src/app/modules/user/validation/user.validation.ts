@@ -1,5 +1,7 @@
 import { Gender, UserRole } from "@prisma/client";
 import { z } from "zod";
+import { addressReqDataValidation } from "./address.validation";
+import { profileDataValidation } from "./profile.validation";
 
 // user validation schema via zod
 const userSchema = z.object({
@@ -12,11 +14,12 @@ const userSchema = z.object({
       .describe(
         "Password should be at least of 6 characters and maximum 16 char",
       ),
-    role: z.enum([...Object.values(UserRole)] as [string, ...string[]]),
     isVerified: z.boolean().optional(),
     lastPasswordChangedAt: z.string().default(new Date().toISOString()),
     otp: z.number().optional(),
     otpExpires: z.string().optional(),
+    profile: profileDataValidation.createProfile.shape.body,
+    country: addressReqDataValidation.create.shape.body,
   }),
 });
 
@@ -44,6 +47,4 @@ export const userReqDataValidation = {
   update: updateUserValidationSchema,
   roleUpdate: updateRoleValidationSchema,
 };
-
-// Type from zod
-export type T_ChangeRole = z.infer<typeof updateRoleValidationSchema>;
+//////////////////////////// <- End -> ////////////////////////////////////////////

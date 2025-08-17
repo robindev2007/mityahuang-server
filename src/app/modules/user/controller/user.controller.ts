@@ -3,10 +3,12 @@ import { StatusCodes } from "http-status-codes";
 import asyncHandler from "../../../../lib/utils/async-handler";
 import sendResponse from "../../../../lib/utils/sendResponse";
 import { userServices } from "../service/user.service";
+import { T_UserSchema } from "../types/user.types";
 
 // ** Crate a user
 const createUser = asyncHandler(async (req: Request, res: Response) => {
-  const result = await userServices.createUserIntoDb(req.body);
+  const body = req.body as T_UserSchema["body"];
+  const result = await userServices.createUserIntoDb(body);
 
   sendResponse(res, {
     statusCode: StatusCodes.CREATED,

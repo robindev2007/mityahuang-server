@@ -1,6 +1,6 @@
-export function generateMemberId(lastName: string) {
+export function generateMemberId(firstName: string) {
   // 1. Clean and split the name
-  const cleanedName = lastName.trim().toLowerCase().replace(/\s+/g, " ");
+  const cleanedName = firstName.trim().toLowerCase().replace(/\s+/g, " ");
 
   // 2. Get current date parts
   const now = new Date();

@@ -1,7 +1,6 @@
-import { User, UserRole } from "@prisma/client";
+import { Gender, User, UserRole } from "@prisma/client";
 import prisma from "../../../../lib/utils/prisma.utils";
-import { T_UserSchema } from "../types/user.types";
-import { T_ChangeRole } from "../validation/user.validation";
+import { T_ChangeRole, T_UserSchema } from "../types/user.types";
 
 // ** Get the user by mail address
 const getUserByMail = async (payload: { email: string; omitPwd?: boolean }) => {
@@ -79,16 +78,74 @@ const getPaginatedUsers = async (
  * @payload - contain all user information. ``
  * @role {enum} - by default every created user is `MEMBER`
  */
-const createUser = async (payload: T_UserSchema) => {
-  return await prisma.user.create({
-    data: {
-      ...payload,
-      role: UserRole.MEMBER,
-    },
-    omit: {
-      password: true,
-    },
+const createUser = async ({
+  payload,
+  memberId,
+}: {
+  payload: T_UserSchema["body"];
+  memberId: string;
+}) => {
+  // when creating a `user` create a `profile`  collections also
+  const { profile, country, ...user } = payload;
+
+  // In a single route creating `user`, `address` and `profile`.
+  const createUserProfileAndAddress = await prisma.$transaction(async (tx) => {
+    // creating user and profile
+    const createUserAndProfile = await tx.user.create({
+      data: {
+        email: user.email,
+        password: user.password,
+        memberId,
+        role: UserRole.MEMBER,
+        profile: {
+          create: {
+            firstName: profile.firstName,
+            gender: profile.gender as Gender,
+          },
+        },
+      },
+      include: {
+        profile: {
+          select: {
+            firstName: true,
+            lastName: true,
+            gender: true,
+          },
+        },
+      },
+      // Reducing the response object to minimize latency
+      omit: {
+        lastPasswordChangedAt: true,
+        isVerified: true,
+        isBlocked: true,
+        authMethod: true,
+        otp: true,
+        otpExpires: true,
+        createdAt: true,
+        updatedAt: true,
+        password: true,
+      },
+    });
+
+    // creating address
+    const createAddress = await tx.address.create({
+      data: {
+        country: country.country,
+        userId: createUserAndProfile.id,
+      },
+    });
+
+    return {
+      user: {
+        ...createUserAndProfile,
+        address: {
+          country: createAddress.country,
+        },
+      },
+    };
   });
+
+  return createUserProfileAndAddress;
 };
 
 // ** Update the user info

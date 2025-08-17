@@ -1,13 +1,39 @@
+import { StatusCodes } from "http-status-codes";
+import {
+  setAccessToken,
+  setRefreshToken,
+} from "../../../../auth/utils/auth.utils";
 import asyncHandler from "../../../../lib/utils/async-handler";
+import sendResponse from "../../../../lib/utils/sendResponse";
+import { authServices } from "../service/auth.service";
+import { I_LoginBody } from "../types/auth.types";
 
 export const authControllers = {
-  login: asyncHandler(async (req, res) => {}),
+  login: asyncHandler(async (req, res) => {
+    const { email, password } = req.body as I_LoginBody;
 
-  forgotPassword: async (req, res) => {},
+    const { accessToken, refreshToken } = await authServices.login({
+      email,
+      password,
+    });
 
-  refreshToken: async (req, res) => {},
+    // before sending response set the `access` token and `refresh` token into browser cookie
+    setAccessToken(res, accessToken);
+    setRefreshToken(res, refreshToken);
 
-  changePassword: async (req, res) => {},
+    sendResponse(res, {
+      success: true,
+      statusCode: StatusCodes.OK,
+      message: "User logged in successful!",
+      data: accessToken,
+    });
+  }),
 
-  resendVerificationEmail: async (req, res) => {},
+  forgotPassword: asyncHandler(async (req, res) => {}),
+
+  refreshToken: asyncHandler(async (req, res) => {}),
+
+  changePassword: asyncHandler(async (req, res) => {}),
+
+  resendVerificationEmail: asyncHandler(async (req, res) => {}),
 };

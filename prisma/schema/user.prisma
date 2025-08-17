@@ -3,14 +3,16 @@ model User {
     password              String
     email                 String      @unique
     role                  UserRole    @default(MEMBER)
+    memberId              String      @unique
     lastPasswordChangedAt DateTime    @default(now()) // extra security check for changing password.Password changes shouldn't be before token issued
     isVerified            Boolean     @default(false) // verified by email
     isBlocked             Boolean     @default(false) // is user Blocked by the system or not
+    authMethod            OauthMethod @default(EMAIL_PASS)
     otp                   Int?
     otpExpires            DateTime? // 10m see the env - JWT_OTP_EXPIRES_IN
-    authMethod            OauthMethod @default(EMAIL_PASS)
-    createdAt             DateTime    @default(now())
-    updatedAt             DateTime    @updatedAt
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
     // 1-to-1 relationship
     profile Profile?
@@ -23,8 +25,7 @@ model User {
 model Profile {
     id          String    @id @default(auto()) @map("_id") @db.ObjectId
     firstName   String
-    lastName    String
-    memberId    String    @unique
+    lastName    String?
     userImage   String    @default("")
     gender      Gender?
     dateOfBirth DateTime?
@@ -35,7 +36,7 @@ model Profile {
     // Relationship
     //1-to-1 relationship
     userId String @unique @db.ObjectId
-    user   User   @relation(fields: [userId], references: [id])
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@map("profile")
 }
@@ -55,5 +56,5 @@ model Address {
 
     // 1-to-m relationship
     userId String @db.ObjectId
-    user   User   @relation(fields: [userId], references: [id])
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

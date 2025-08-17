@@ -2,13 +2,18 @@ import { User } from "@prisma/client";
 import { StatusCodes } from "http-status-codes";
 import AppError from "../../../../errors/appError";
 import { I_PaginationResponse } from "../../../../interface/common.interface";
+import { generateMemberId } from "../../../../lib/utils/gen-member-id";
 import { userRepository } from "../repository/user.repository";
-import { T_UserSchema } from "../types/user.types";
-import { T_ChangeRole } from "../validation/user.validation";
+import { T_ChangeRole, T_UserSchema } from "../types/user.types";
 
 // ** Create user into db
-const createUserIntoDb = async (payload: T_UserSchema) => {
-  const result = await userRepository.createUser(payload);
+const createUserIntoDb = async (payload: T_UserSchema["body"]) => {
+  // generate the memberId
+  const generatedMemberId = generateMemberId(payload.profile.firstName);
+  const result = await userRepository.createUser({
+    payload,
+    memberId: generatedMemberId,
+  });
   return result;
 };
 
@@ -126,6 +131,7 @@ const updateUserInfoFromDb = async (id: string, payload: Partial<User>) => {
       "You can't change role by yourself!",
     );
   }
+
   const updateUserInfo = await userRepository.updateUser(id, rest);
   return updateUserInfo;
 };
