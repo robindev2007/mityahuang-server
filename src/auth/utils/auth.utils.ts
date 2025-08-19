@@ -3,10 +3,10 @@ import { StatusCodes } from "http-status-codes";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import env from "../../config/clean-env";
 import AppError from "../../errors/appError";
-import { I_GlobalJwtType } from "../../interface/common.interface";
+import { I_GlobalJwtPayload } from "../../interface/common.interface";
 
 // Generate the access token
-export const createAccessToken = (jwtPayload: I_GlobalJwtType) => {
+export const createAccessToken = (jwtPayload: I_GlobalJwtPayload) => {
   return jwt.sign(jwtPayload, env.JWT_ACCESS_TOKEN as string, {
     expiresIn: env.JWT_ACCESS_EXPIRES_IN as any, // 1 day of expiry
   });

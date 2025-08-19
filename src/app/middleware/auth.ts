@@ -3,7 +3,7 @@ import httpStatus, { StatusCodes } from "http-status-codes";
 import env from "../../config/clean-env";
 import AppError from "../../errors/appError";
 
-import { I_GlobalJwtType } from "../../interface/common.interface";
+import { I_GlobalJwtPayload } from "../../interface/common.interface";
 import asyncHandler from "../../lib/utils/async-handler";
 import { verifyToken } from "../../lib/utils/auth.utils";
 import prisma from "../../lib/utils/prisma.utils";
@@ -30,7 +30,10 @@ export const authGuard = (...requiredRole: UserRole[]) =>
     }
 
     //  Verify token
-    const decoded = verifyToken(token, env.JWT_ACCESS_TOKEN) as I_GlobalJwtType;
+    const decoded = verifyToken(
+      token,
+      env.JWT_ACCESS_TOKEN,
+    ) as I_GlobalJwtPayload;
 
     const user = await prisma.user.findUnique({
       where: {
@@ -52,7 +55,7 @@ export const authGuard = (...requiredRole: UserRole[]) =>
     }
 
     //  setting the decode value into JwtPayload
-    req.user = decoded as I_GlobalJwtType;
+    req.user = decoded as I_GlobalJwtPayload;
 
     next();
   });

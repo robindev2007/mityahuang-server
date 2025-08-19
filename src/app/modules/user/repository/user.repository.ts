@@ -1,4 +1,4 @@
-import { Gender, User, UserRole } from "@prisma/client";
+import { Gender, Profile, UserRole } from "@prisma/client";
 import prisma from "../../../../lib/utils/prisma.utils";
 import { T_ChangeRole, T_UserSchema } from "../types/user.types";
 
@@ -63,10 +63,29 @@ const getPaginatedUsers = async (
   skip: number,
   query: Record<string, any>,
 ) => {
+  // Build dynamic where clause
+  //let whereClause: Record<string, any> = {};
+
+  // if there is any query parameter in the req.query object then dynamically adding them on the where clause.
+
+  /*
+   * Most probably the query parameter will be
+   ** `isVerified`
+   ** `isBlocked`
+   */
+  /* Object.entries(query).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== "") {
+      whereClause[key] = value;
+    }
+  }); */
+
   return await prisma.user.findMany({
     take: limit,
     skip,
-    where: query,
+    where: {
+      isVerified: true,
+      isBlocked: false,
+    },
     omit: {
       password: true,
     },
@@ -104,6 +123,7 @@ const createUser = async ({
           },
         },
       },
+
       include: {
         profile: {
           select: {
@@ -148,19 +168,6 @@ const createUser = async ({
   return createUserProfileAndAddress;
 };
 
-// ** Update the user info
-const updateUser = async (id: string, payload: Partial<User>) => {
-  return await prisma.user.update({
-    where: {
-      id,
-    },
-    data: payload,
-    omit: {
-      password: true,
-    },
-  });
-};
-
 // ** Update the user role
 const updateUserRole = async (email: string, role: UserRole) => {
   return await prisma.user.update({
@@ -197,9 +204,11 @@ const changeUserRole = async (payload: T_ChangeRole["body"]) => {
   });
 };
 
+// User profile repository
+const updateUserProfile = async (id: string, profile: Partial<Profile>) => {};
 export const userRepository = {
   createUser,
-  updateUser,
+  updateUserProfile,
   getUserByMail,
   getUserByMailAndRole,
   updateUserRole,

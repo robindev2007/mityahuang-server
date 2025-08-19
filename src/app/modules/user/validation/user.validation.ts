@@ -1,4 +1,4 @@
-import { Gender, UserRole } from "@prisma/client";
+import { UserRole } from "@prisma/client";
 import { z } from "zod";
 import { addressReqDataValidation } from "./address.validation";
 import { profileDataValidation } from "./profile.validation";
@@ -23,17 +23,6 @@ const userSchema = z.object({
   }),
 });
 
-//  update user validation schema
-const updateUserValidationSchema = z.object({
-  body: z.object({
-    firstName: z.string().min(1).max(20).trim().optional(),
-    lastName: z.string().max(20).trim().optional(),
-    gender: z
-      .enum([...Object.values(Gender)] as [string, ...string[]])
-      .optional(),
-  }),
-});
-
 //  update user role validation schema
 const updateRoleValidationSchema = z.object({
   body: z.object({
@@ -44,7 +33,6 @@ const updateRoleValidationSchema = z.object({
 
 export const userReqDataValidation = {
   create: userSchema,
-  update: updateUserValidationSchema,
   roleUpdate: updateRoleValidationSchema,
 };
 //////////////////////////// <- End -> ////////////////////////////////////////////

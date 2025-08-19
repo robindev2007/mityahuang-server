@@ -1,4 +1,4 @@
-import { User } from "@prisma/client";
+import { Profile, User } from "@prisma/client";
 import { StatusCodes } from "http-status-codes";
 import AppError from "../../../../errors/appError";
 import { I_PaginationResponse } from "../../../../interface/common.interface";
@@ -35,7 +35,7 @@ const getAllUsersFromDb = async (
   const result = await userRepository.getPaginatedUsers(limit, skip, query!);
 
   // pagination return data schema
-  const paginationSchema = {
+  const paginationSchema: I_PaginationResponse<Omit<User, "password">[]> = {
     meta: {
       totalCount,
       totalPages,
@@ -101,41 +101,6 @@ const getUserByEmailFromDb = async (email: string) => {
   return result;
 };
 
-// ** Update user information
-const updateUserInfoFromDb = async (id: string, payload: Partial<User>) => {
-  // email is missing in params
-  if (!id) {
-    throw new AppError(
-      StatusCodes.UNAUTHORIZED,
-      "Id is missing in order to update information!",
-    );
-  }
-
-  const isUserExist = await userRepository.getUserById(id);
-
-  // if there is now user exist by the email
-  if (!isUserExist) {
-    throw new AppError(
-      StatusCodes.NOT_FOUND,
-      "User doesn't exist by this email!",
-    );
-  }
-
-  // update the user information
-  const { role, ...rest } = payload;
-
-  if (role && Object.keys(payload).includes(role)) {
-    // A user can't change any role
-    throw new AppError(
-      StatusCodes.UNAUTHORIZED,
-      "You can't change role by yourself!",
-    );
-  }
-
-  const updateUserInfo = await userRepository.updateUser(id, rest);
-  return updateUserInfo;
-};
-
 // ** Delete user
 const deleteUserInfoFromDb = async (id: string, payload: Partial<User>) => {
   // email is missing in params
@@ -174,15 +139,49 @@ const changeUserRoleFromDb = async (payload: T_ChangeRole["body"]) => {
     );
   }
 
+  // If user already have the role that comes from the payload then no need to change the role
+  if (isUserExist.role === payload.role) {
+    throw new AppError(StatusCodes.BAD_REQUEST, "User already have this role!");
+  }
+
   const updateUserRole = await userRepository.changeUserRole(payload);
   return updateUserRole;
 };
 
+// Update user profile
+// ** Update only user information
+const updateUserProfileFromDb = async (
+  id: string,
+  payload: Partial<Profile>,
+) => {
+  // email is missing in params
+  if (!id) {
+    throw new AppError(
+      StatusCodes.BAD_REQUEST,
+      "Id is missing in order to update information!",
+    );
+  }
+
+  // getting user information by id to check if user exist or not
+  const isUserExist = await userRepository.getUserById(id);
+
+  // if there is now user exist by the email
+  if (!isUserExist) {
+    throw new AppError(
+      StatusCodes.NOT_FOUND,
+      "User doesn't exist by this email!",
+    );
+  }
+
+  const updateUserInfo = await userRepository.updateUserProfile(id, payload);
+
+  return updateUserInfo;
+};
 export const userServices = {
   getAllUsersFromDb,
   createUserIntoDb,
   getSingeUserFromDb,
-  updateUserInfoFromDb,
+  updateUserProfileFromDb,
   getUserByEmailFromDb,
   deleteUserInfoFromDb,
   getSingeUserByEmailFromDb,

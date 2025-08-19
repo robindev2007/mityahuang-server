@@ -58,10 +58,11 @@ const getSingleUserByMail = asyncHandler(
   },
 );
 
-// ** Update user information
-const updateUser = asyncHandler(async (req: Request, res: Response) => {
-  const userId = req.params.id; // which user information need to be updated
-  const result = await userServices.updateUserInfoFromDb(userId, req.body);
+// ** Update profile information
+const updateUserProfile = asyncHandler(async (req: Request, res: Response) => {
+  const userId = req.params.userId; // which user information need to be updated
+  const body = req.body;
+  const result = await userServices.updateUserProfileFromDb(userId, body);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
@@ -86,7 +87,7 @@ const deleteUser = asyncHandler(async (req: Request, res: Response) => {
 
 // ** Change users role
 const changeRole = asyncHandler(async (req: Request, res: Response) => {
-  const body = req.body as typeof req.body & {
+  const body = req.body as {
     email: string;
     role: string;
   };
@@ -102,7 +103,7 @@ const changeRole = asyncHandler(async (req: Request, res: Response) => {
 
 export const userControllers = {
   createUser,
-  updateUser,
+  updateUserProfile,
   getAllUsers,
   getSingleUser,
   deleteUser,

@@ -2,7 +2,7 @@ import { UserRole } from "@prisma/client";
 import { JwtPayload } from "jsonwebtoken";
 
 /* JWT Payload */
-export interface I_GlobalJwtType extends JwtPayload {
+export interface I_GlobalJwtPayload extends JwtPayload {
   id: string;
   email: string;
   role: UserRole;
@@ -18,6 +18,5 @@ export interface I_PaginationResponse<T> {
     page: number;
     limit: number;
   };
-
   result: T;
 }
