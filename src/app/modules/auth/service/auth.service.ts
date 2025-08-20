@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import {
   createAccessToken,
   createRefreshToken,
+  generateOTP,
 } from "../../../../auth/utils/auth.utils";
 import AppError from "../../../../errors/appError";
 import { validateEncryptedPassword } from "../../../../lib/utils/encryption";
@@ -30,7 +31,7 @@ export const authServices = {
     // if user is blocked
     if (user.isBlocked) {
       throw new AppError(
-        StatusCodes.BAD_REQUEST,
+        StatusCodes.UNAUTHORIZED,
         "Your account was blocked by the system! Please contact support!",
       );
     }
@@ -46,7 +47,7 @@ export const authServices = {
     // validate the password
     if (!(await validateEncryptedPassword(payload.password, user.password))) {
       throw new AppError(
-        StatusCodes.UNAUTHORIZED,
+        StatusCodes.BAD_REQUEST,
         "Credentials mismatch match!",
       );
     }
@@ -70,5 +71,29 @@ export const authServices = {
       accessToken,
       refreshToken,
     };
+  },
+
+  // Re-send verification mail
+  resendVerifyEmail: async (email: string) => {
+    const result = await userRepository.getUserByMail({ email: email });
+
+    if (!result) {
+      throw new AppError(
+        StatusCodes.NOT_FOUND,
+        "User doesn't exist by this email!",
+      );
+    }
+
+    // 01. Generate a OTP
+    const generateSixDigitOpOTP = generateOTP(email);
+
+    // 02. Save the otp in DB with expiry
+    await userRepository.updateUserInfo(result.id, {
+      otp: generateSixDigitOpOTP.otp,
+      otpExpires: generateSixDigitOpOTP.token,
+    });
+    // 03. Send the email
+
+    return result;
   },
 };

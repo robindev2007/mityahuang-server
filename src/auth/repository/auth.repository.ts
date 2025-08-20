@@ -1,5 +1,6 @@
-import prisma from "../../../../utils/prisma.utils";
+import prisma from "../../lib/utils/prisma.utils";
 
+//  retrieve user with password
 const getUserByIdWitPass = async (id: string) => {
   return await prisma.user.findUnique({
     where: {
@@ -11,6 +12,7 @@ const getUserByIdWitPass = async (id: string) => {
   });
 };
 
+// change user password
 const updateUserPasswordById = async (payload: {
   id: string;
   password: string;
@@ -21,6 +23,7 @@ const updateUserPasswordById = async (payload: {
   });
 };
 
+// verify email
 const verifyEmail = async (email: string) => {
   return await prisma.user.update({
     where: { email },
@@ -31,17 +34,17 @@ const verifyEmail = async (email: string) => {
   });
 };
 
-const getOtpByEmail = async (email: string) => {
-  return await prisma.oTP.findUnique({
-    where: {
-      email,
-    },
-  });
-};
+// const getOtpByEmail = async (email: string) => {
+//   return await prisma.oTP.findUnique({
+//     where: {
+//       email,
+//     },
+//   });
+// };
 
 export const AuthRepository = {
   updateUserPasswordById,
   verifyEmail,
   getUserByIdWitPass,
-  getOtpByEmail,
+  //getOtpByEmail,
 };

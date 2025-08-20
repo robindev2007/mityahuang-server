@@ -5,8 +5,8 @@ import AppError from "../../errors/appError";
 
 import { I_GlobalJwtPayload } from "../../interface/common.interface";
 import asyncHandler from "../../lib/utils/async-handler";
-import { verifyToken } from "../../lib/utils/auth.utils";
 import prisma from "../../lib/utils/prisma.utils";
+import { verifyToken } from "../../lib/utils/verify-token.utils";
 
 export const authGuard = (...requiredRole: UserRole[]) =>
   asyncHandler(async (req, res, next) => {

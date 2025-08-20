@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import SMTPTransport from "nodemailer/lib/smtp-transport";
-import env from "../../config/cleanEnv";
+import env from "../../config/clean-env";
 
 type EmailPayload = {
   to: string;

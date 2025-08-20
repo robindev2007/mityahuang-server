@@ -9,7 +9,7 @@ model User {
     isBlocked             Boolean     @default(false) // is user Blocked by the system or not
     authMethod            OauthMethod @default(EMAIL_PASS)
     otp                   Int?
-    otpExpires            DateTime? // 10m see the env - JWT_OTP_EXPIRES_IN
+    otpExpires            String? // 10m see the env - JWT_OTP_EXPIRES_IN
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt

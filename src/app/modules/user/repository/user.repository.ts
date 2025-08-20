@@ -1,4 +1,4 @@
-import { Gender, Profile, UserRole } from "@prisma/client";
+import { Gender, Profile, User, UserRole } from "@prisma/client";
 import prisma from "../../../../lib/utils/prisma.utils";
 import { T_ChangeRole, T_UserSchema } from "../types/user.types";
 
@@ -204,8 +204,20 @@ const changeUserRole = async (payload: T_ChangeRole["body"]) => {
   });
 };
 
+// Update user information
+const updateUserInfo = async (id: string, payload: Partial<User>) => {
+  // if user exist
+  return await prisma.user.update({
+    where: {
+      id,
+    },
+    data: payload,
+  });
+};
+
 // User profile repository
 const updateUserProfile = async (id: string, profile: Partial<Profile>) => {};
+
 export const userRepository = {
   createUser,
   updateUserProfile,
@@ -218,4 +230,5 @@ export const userRepository = {
   getPaginatedUsers,
   getUserByIdFromDB,
   changeUserRole,
+  updateUserInfo,
 };
