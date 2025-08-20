@@ -7,6 +7,7 @@ import {
 } from "../../../../auth/utils/auth.utils";
 import AppError from "../../../../errors/appError";
 import { validateEncryptedPassword } from "../../../../lib/utils/encryption";
+import { sendEmail } from "../../../../lib/utils/send-mail";
 import { userRepository } from "../../user/repository/user.repository";
 
 export const authServices = {
@@ -92,7 +93,13 @@ export const authServices = {
       otp: generateSixDigitOpOTP.otp,
       otpExpires: generateSixDigitOpOTP.token,
     });
+
     // 03. Send the email
+    sendEmail({
+      to: email,
+      subject: "Verify your email",
+      html: resetPwdOtp(generateSixDigitOpOTP.otp),
+    });
 
     return result;
   },
