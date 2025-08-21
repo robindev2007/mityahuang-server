@@ -36,6 +36,13 @@ const env = cleanEnv(process.env, {
   TAOBAO_API: str(),
   TAOBAO_API_KEY: str(),
   TAOBAO_API_SECRET: str(),
+
+  // SMTP setup
+  SMTP_HOST: str(),
+  SMTP_PORT: num(),
+  SMTP_USER: str(),
+  SMTP_PASS: str(),
+  TRANSPORT_EMAIL: str(),
 });
 
 export default env;

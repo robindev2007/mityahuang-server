@@ -31,10 +31,10 @@ export const authControllers = {
   }),
 
   // For re-send the verification email
-  resendVerifyEmail: asyncHandler(async (req, res) => {
+  resendVerificationOTPToEmail: asyncHandler(async (req, res) => {
     const { email } = req.body as { email: string };
 
-    const result = await authServices.resendVerifyEmail(email);
+    const result = await authServices.resendOPTEmail(email);
 
     sendResponse(res, {
       success: true,
@@ -44,11 +44,26 @@ export const authControllers = {
     });
   }),
 
+  // Verify the otp
+  verifyOTP: asyncHandler(async (req, res) => {
+    const { email, otp } = req.body as {
+      email: string;
+      otp: number;
+    };
+
+    const result = await authServices.verifyTheOTP({ email, otp });
+
+    sendResponse(res, {
+      success: true,
+      statusCode: StatusCodes.OK,
+      message: `OTP verified successfully`,
+      data: result,
+    });
+  }),
+
   forgotPassword: asyncHandler(async (req, res) => {}),
 
   refreshToken: asyncHandler(async (req, res) => {}),
 
   changePassword: asyncHandler(async (req, res) => {}),
-
-  resendVerificationEmail: asyncHandler(async (req, res) => {}),
 };

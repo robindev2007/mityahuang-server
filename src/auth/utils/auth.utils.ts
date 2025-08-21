@@ -28,7 +28,11 @@ export const generatePasswordResetToken = (jwtPayload: string) => {
 
 // Generate the otp
 export const generateOTP = (email: string) => {
-  const otp = Math.ceil(Math.round(Math.random() * 10000));
+  const otp = Number(
+    Math.floor(Math.random() * 1000000)
+      .toString()
+      .padStart(6, "0"),
+  );
   const token = jwt.sign({ email, otp }, env.JWT_OTP_TOKEN, {
     expiresIn: env.JWT_OTP_EXPIRES_IN as any,
   });
@@ -36,11 +40,6 @@ export const generateOTP = (email: string) => {
     token,
     otp,
   };
-};
-
-// Verifying the token
-export const verifyToken = (token: string, secret: string) => {
-  return jwt.verify(token, secret) as JwtPayload;
 };
 
 // setting access token
