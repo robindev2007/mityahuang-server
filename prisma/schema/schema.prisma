@@ -29,7 +29,30 @@ model WhatsappContact {
 }
 
 model SocialMedia {
-  id     String            @id @default(auto()) @map("_id") @db.ObjectId
-  link   String
-  status SocialMediaStatus
+  id       String            @id @default(auto()) @map("_id") @db.ObjectId
+  imageUrl String
+  link     String
+  status   SocialMediaStatus @default(Normal)
+}
+
+model Bulletin {
+  id        String               @id @default(auto()) @map("_id") @db.ObjectId
+  date      DateTime
+  eventName String
+  status    NormalOrHiddenStatus
+
+  createdAt DateTime @default(now())
+
+  @@map("bulletin")
+}
+
+model Advertising {
+  id                  String @id @default(auto()) @map("_id") @db.ObjectId
+  link                String
+  textSize            Int
+  advertisingImageUrl String
+
+  updatedAt DateTime @updatedAt()
+
+  @@map("advertising")
 }

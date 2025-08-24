@@ -8,9 +8,6 @@ const router = Router();
 // ** get all promotional levels
 router.route("/").get(promotionLevelController.getAllPromotionLevels);
 
-// ** get all normal promotional levels
-router.route("/normal").get(promotionLevelController.getNormalPromotionLevels);
-
 // ** get single promotional level
 router.route("/:id").get(promotionLevelController.getPromotionLevelById);
 

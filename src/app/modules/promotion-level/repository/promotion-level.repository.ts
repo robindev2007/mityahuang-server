@@ -5,31 +5,13 @@ import prisma from "../../../../lib/utils/prisma.utils";
 const getAllPromotionLevels = async (
   limit: number,
   skip: number,
-  query: Record<string, any>,
+  query?: Record<string, any>,
 ) => {
   return await prisma.promotionLevel.findMany({
     take: limit,
     skip,
     orderBy: {
       createdAt: "asc",
-    },
-  });
-};
-
-// ** get promotion levels
-const getNormalPromotionLevels = async (
-  limit: number,
-  skip: number,
-  query: Record<string, any>,
-) => {
-  return await prisma.promotionLevel.findMany({
-    take: limit,
-    skip,
-    orderBy: {
-      createdAt: "asc",
-    },
-    where: {
-      status: "Normal",
     },
   });
 };
@@ -44,15 +26,6 @@ const createNewPromotionalLevel = async (payload: PromotionLevel) => {
 // ** get promotion levels count
 const getPromotionLevelsCount = async () => {
   return await prisma.promotionLevel.count();
-};
-
-// ** get promotion levels count
-const getNormalPromotionLevelsCount = async () => {
-  return await prisma.promotionLevel.count({
-    where: {
-      status: "Normal",
-    },
-  });
 };
 
 // ** get single promotion level
@@ -87,6 +60,4 @@ export const promotionLevelRepository = {
   deletePromotionLevelFromDb,
   getPromotionLevelsCount,
   createNewPromotionalLevel,
-  getNormalPromotionLevels,
-  getNormalPromotionLevelsCount,
 };

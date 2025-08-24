@@ -10,6 +10,9 @@ export type T_ASSETS_UPLOAD_FOLDER_NAME =
   | "place/media"
   | "place/items"
   | "careers"
+  | "social-media"
+  | "blogs"
+  | "advertising"
   | "whatsapp-contact-image";
 
 export const allowedTypes = [

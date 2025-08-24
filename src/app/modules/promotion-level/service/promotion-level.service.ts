@@ -80,43 +80,10 @@ const updatePromotionLevelFromDb = async (
   return data;
 };
 
-// ** get normal promotion level
-const getNormalPromotionLevels = async (query?: Record<string, any>) => {
-  const page = Number(query?.page) || 1;
-  const limit = Number(query?.limit) || 10;
-  const skip = Number(page - 1) * limit || 0;
-
-  // get total count of contact us
-  const totalCount =
-    await promotionLevelRepository.getNormalPromotionLevelsCount();
-
-  // calculate total page for pagination
-  const totalPages = Math.ceil(totalCount / limit);
-
-  const result = await promotionLevelRepository.getNormalPromotionLevels(
-    limit,
-    skip,
-    query!,
-  );
-
-  const paginationSchema: I_PaginationResponse<PromotionLevel[]> = {
-    meta: {
-      totalCount,
-      totalPages,
-      page,
-      limit,
-    },
-    result,
-  };
-
-  return paginationSchema;
-};
-
 export const promotionLevelService = {
   getPromotionLevelFromDb,
   createNewPromotionalLevel,
   getPromotionLevelById,
   updatePromotionLevelFromDb,
   deletePromotionLevelFromDb,
-  getNormalPromotionLevels,
 };

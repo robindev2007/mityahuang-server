@@ -17,20 +17,6 @@ const getAllPromotionLevels = asyncHandler(async (req, res) => {
   });
 });
 
-// ** get all promotional level
-const getNormalPromotionLevels = asyncHandler(async (req, res) => {
-  const result = await promotionLevelService.getNormalPromotionLevels(
-    req.query,
-  );
-
-  sendResponse(res, {
-    statusCode: StatusCodes.OK,
-    success: true,
-    message: "Gating all promotional levels success",
-    data: result,
-  });
-});
-
 // ** get promotional level by id
 const getPromotionLevelById = asyncHandler(async (req, res) => {
   const { id } = req.params;
@@ -93,5 +79,4 @@ export const promotionLevelController = {
   getPromotionLevelById,
   updatePromotionalLevel,
   deletePromotionLevelFromDb,
-  getNormalPromotionLevels,
 };

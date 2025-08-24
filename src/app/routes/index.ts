@@ -8,6 +8,10 @@ import { UserRoutes } from "../modules/user/routes/user.route";
 import { contactUsRoutes } from "../modules/contact-us/routes/contact-us.routes";
 import { promotionLevelRouter } from "../modules/promotion-level/routes/promotion-level.routes";
 import { whatsappContactRouter } from "../modules/whatsapp-contact/routes/whatsapp-contact.routes";
+import { SocialMediaRoutes } from "../modules/social-media/routes/social-media.routes";
+import { BulletinRouter } from "../modules/bulletin/routes/bulletin.routes";
+import { BlogRoutes } from "../modules/blog/routes/blog.routes";
+import { AdvertisingRoutes } from "../modules/advertising/routes/advertising.routes";
 
 const routes = Router();
 
@@ -37,6 +41,22 @@ const routesModule: TRouteModules[] = [
   {
     path: "/whatsapp-contact",
     routes: whatsappContactRouter,
+  },
+  {
+    path: "/social-media",
+    routes: SocialMediaRoutes,
+  },
+  {
+    path: "/bulletins",
+    routes: BulletinRouter,
+  },
+  {
+    path: "/blogs",
+    routes: BlogRoutes,
+  },
+  {
+    path: "/advertising",
+    routes: AdvertisingRoutes,
   },
 
   // Extra but

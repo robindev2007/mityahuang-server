@@ -38,3 +38,14 @@ enum SocialMediaStatus {
     Normal
     Hidden
 }
+
+enum NormalOrHiddenStatus {
+    Normal
+    Hidden
+}
+
+enum BlogLevel {
+    LatestActivity @map("Latest activity")
+    Recommend
+    FAQ
+}
