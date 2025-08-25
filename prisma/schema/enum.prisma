@@ -59,3 +59,14 @@ enum TypeOfCharge {
     Percentage_of_products_amount
     Fixed_amount_for_each_pcs
 }
+
+enum CouponType {
+    Full_Reduction
+    Discount
+}
+
+enum CouponUse {
+    All
+    Order
+    Waybill
+}

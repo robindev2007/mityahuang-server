@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { normalOrHiddenZodSchema } from "../../../../global-validation/validation";
 
 const newServiceManagement = z.object({
   body: z.object({
@@ -9,7 +10,7 @@ const newServiceManagement = z.object({
     ]),
     service: z.string(),
     fee: z.number().positive().min(0),
-    status: z.enum(["Normal", "Hidden"]),
+    status: normalOrHiddenZodSchema,
   }),
 });
 
@@ -21,7 +22,7 @@ const updateServiceManagement = z.object({
       .optional(),
     service: z.string().optional(),
     fee: z.number().positive().min(0).optional(),
-    status: z.enum(["Normal", "Hidden"]).optional(),
+    status: normalOrHiddenZodSchema.optional(),
   }),
 });
 

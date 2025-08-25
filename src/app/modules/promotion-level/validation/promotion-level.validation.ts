@@ -1,11 +1,12 @@
 import { z } from "zod";
+import { normalOrHiddenZodSchema } from "../../../../global-validation/validation";
 
 const newPromotionalLevelSchema = z.object({
   body: z.object({
     promotionLevelTips: z.string(),
     experienceThreshold: z.number().positive().min(0, "Minimum value 0"),
     commissionRateTips: z.number().positive().min(0, "Minimum value 0"),
-    status: z.enum(["Normal", "Hidden"]),
+    status: normalOrHiddenZodSchema,
   }),
 });
 
@@ -22,7 +23,7 @@ const updatePromotionalLevelSchema = z.object({
       .positive()
       .min(0, "Minimum value 0")
       .optional(),
-    status: z.enum(["Normal", "Hidden"]).optional(),
+    status: normalOrHiddenZodSchema.optional(),
   }),
 });
 

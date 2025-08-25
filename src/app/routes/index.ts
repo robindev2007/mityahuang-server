@@ -15,6 +15,8 @@ import { AdvertisingRoutes } from "../modules/advertising/routes/advertising.rou
 import { HelpCenterRoutes } from "../modules/help-center/routes/help-center.routes";
 import { FAQRoutes } from "../modules/faq/routes/faq.routes";
 import { serviceManagementRoutes } from "../modules/service-management/routes/service-management.routes";
+import { EvaluationManagementRoutes } from "../modules/evaluation-management/routes/evaluation-management.routes";
+import { CouponRoutes } from "../modules/coupon-management/routes/coupon-management.routes";
 
 const routes = Router();
 
@@ -72,6 +74,14 @@ const routesModule: TRouteModules[] = [
   {
     path: "/service-managements",
     routes: serviceManagementRoutes,
+  },
+  {
+    path: "/evaluation-management",
+    routes: EvaluationManagementRoutes,
+  },
+  {
+    path: "/coupons",
+    routes: CouponRoutes,
   },
 
   // Extra but
