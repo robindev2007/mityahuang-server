@@ -45,7 +45,17 @@ enum NormalOrHiddenStatus {
 }
 
 enum BlogLevel {
-    LatestActivity @map("Latest activity")
+    Latest_Activity
     Recommend
     FAQ
+}
+
+enum OrderType {
+    Product
+    Parcel
+}
+
+enum TypeOfCharge {
+    Percentage_of_products_amount
+    Fixed_amount_for_each_pcs
 }

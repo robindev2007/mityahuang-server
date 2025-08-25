@@ -14,6 +14,7 @@ import { BlogRoutes } from "../modules/blog/routes/blog.routes";
 import { AdvertisingRoutes } from "../modules/advertising/routes/advertising.routes";
 import { HelpCenterRoutes } from "../modules/help-center/routes/help-center.routes";
 import { FAQRoutes } from "../modules/faq/routes/faq.routes";
+import { serviceManagementRoutes } from "../modules/service-management/routes/service-management.routes";
 
 const routes = Router();
 
@@ -67,6 +68,10 @@ const routesModule: TRouteModules[] = [
   {
     path: "/faqs",
     routes: FAQRoutes,
+  },
+  {
+    path: "/service-managements",
+    routes: serviceManagementRoutes,
   },
 
   // Extra but

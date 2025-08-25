@@ -40,6 +40,8 @@ const getSingleBlog = async (id: string) => {
   if (!blogExist) {
     throw new AppError(HttpStatusCode.NotFound, "Blog not found");
   }
+
+  return blogExist;
 };
 
 // ** create new blog
