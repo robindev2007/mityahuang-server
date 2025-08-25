@@ -12,6 +12,8 @@ import { SocialMediaRoutes } from "../modules/social-media/routes/social-media.r
 import { BulletinRouter } from "../modules/bulletin/routes/bulletin.routes";
 import { BlogRoutes } from "../modules/blog/routes/blog.routes";
 import { AdvertisingRoutes } from "../modules/advertising/routes/advertising.routes";
+import { HelpCenterRoutes } from "../modules/help-center/routes/help-center.routes";
+import { FAQRoutes } from "../modules/faq/routes/faq.routes";
 
 const routes = Router();
 
@@ -57,6 +59,14 @@ const routesModule: TRouteModules[] = [
   {
     path: "/advertising",
     routes: AdvertisingRoutes,
+  },
+  {
+    path: "/help-center-info",
+    routes: HelpCenterRoutes,
+  },
+  {
+    path: "/faqs",
+    routes: FAQRoutes,
   },
 
   // Extra but

@@ -56,3 +56,13 @@ model Advertising {
 
   @@map("advertising")
 }
+
+model HelpCenter {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  whatsAppNumber String
+  email          String
+
+  updatedAt DateTime @updatedAt()
+
+  @@map("help_center")
+}
