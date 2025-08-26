@@ -1,5 +1,6 @@
 import { CouponManagement } from "@prisma/client";
 import prisma from "../../../../lib/utils/prisma.utils";
+import { T_NewCoupon, T_UpdateCoupon } from "../types/coupon-management.types";
 
 // ** get all coupon management
 const getAllCoupon = async (
@@ -21,14 +22,14 @@ const getSingleCoupon = async (id: string) => {
 };
 
 // ** create new Coupon
-const createNewCoupon = async (payload: CouponManagement) => {
+const createNewCoupon = async (payload: T_NewCoupon) => {
   return await prisma.couponManagement.create({
     data: payload,
   });
 };
 
 // ** update Coupon
-const updateCoupon = async (id: string, payload: Partial<CouponManagement>) => {
+const updateCoupon = async (id: string, payload: T_UpdateCoupon) => {
   return await prisma.couponManagement.update({
     where: { id },
     data: payload,

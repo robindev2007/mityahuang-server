@@ -3,6 +3,7 @@ import { I_PaginationResponse } from "../../../../interface/common.interface";
 import { bulletinRepository } from "../repository/bulletin.repository";
 import AppError from "../../../../errors/appError";
 import { HttpStatusCode } from "axios";
+import { T_NewBulletin, T_UpdateBulletin } from "../types/bulletin.types";
 
 // ** getAll bulletin
 const getAllBulletin = async (query?: Record<string, any>) => {
@@ -43,7 +44,7 @@ const getSingleBulletin = async (id: string) => {
 };
 
 // ** create new bulletin
-const createNewBulletin = async (payload: Bulletin) => {
+const createNewBulletin = async (payload: T_NewBulletin) => {
   const eventData = new Date(payload.date);
 
   if (eventData < new Date()) {
@@ -59,16 +60,20 @@ const createNewBulletin = async (payload: Bulletin) => {
 };
 
 // ** create new bulletin
-const updateBulletin = async (id: string, payload: Bulletin) => {
+const updateBulletin = async (id: string, payload: T_UpdateBulletin) => {
   const bulletinExist = await bulletinRepository.getSingleBulletin(id);
 
   if (!bulletinExist) {
     throw new AppError(HttpStatusCode.NotFound, "Bulletin not found");
   }
 
-  const eventData = new Date(payload.date);
+  let newEventData;
+  if (payload.date) {
+    const eventData = new Date(payload.date);
+    newEventData = eventData;
+  }
 
-  if (eventData < new Date()) {
+  if (newEventData && newEventData < new Date()) {
     throw new AppError(
       HttpStatusCode.NotAcceptable,
       "Event date must be in future",

@@ -1,5 +1,6 @@
 import { Advertising } from "@prisma/client";
 import prisma from "../../../../lib/utils/prisma.utils";
+import { T_UpdateAdvertising } from "../types/advertising.types";
 
 // ** get advertising
 const getAdvertising = async () => {
@@ -7,7 +8,7 @@ const getAdvertising = async () => {
 };
 
 // ** update Advertising
-const updateAdvertising = async (id: string, payload: Partial<Advertising>) => {
+const updateAdvertising = async (id: string, payload: T_UpdateAdvertising) => {
   return await prisma.advertising.update({
     where: { id },
     data: payload,

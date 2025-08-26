@@ -1,5 +1,9 @@
 import { PromotionLevel } from "@prisma/client";
 import prisma from "../../../../lib/utils/prisma.utils";
+import {
+  T_NewPromotionalLevel,
+  T_UpdatePromotionalLevel,
+} from "../types/promotion-level.types";
 
 // ** get promotion levels
 const getAllPromotionLevels = async (
@@ -17,7 +21,7 @@ const getAllPromotionLevels = async (
 };
 
 // ** create new promotion levels
-const createNewPromotionalLevel = async (payload: PromotionLevel) => {
+const createNewPromotionalLevel = async (payload: T_NewPromotionalLevel) => {
   return await prisma.promotionLevel.create({
     data: payload,
   });
@@ -38,7 +42,7 @@ const getPromotionLevelById = async (id: string) => {
 // ** update promotion level from db
 const updatePromotionLevel = async (
   id: string,
-  payload: Partial<PromotionLevel>,
+  payload: T_UpdatePromotionalLevel,
 ) => {
   return await prisma.promotionLevel.update({
     where: { id },

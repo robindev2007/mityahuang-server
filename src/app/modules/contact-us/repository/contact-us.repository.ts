@@ -1,8 +1,9 @@
 import { ContactUs, ContactUsStatus } from "@prisma/client";
 import prisma from "../../../../lib/utils/prisma.utils";
+import { T_NewContactUs, T_UpdateContactUs } from "../types/contact-us.types";
 
 // ** create new contact us
-const creteContactUs = async (payload: ContactUs) => {
+const creteContactUs = async (payload: T_NewContactUs) => {
   return await prisma.contactUs.create({
     data: payload,
   });
@@ -59,11 +60,11 @@ const getContactUsCount = async () => {
 };
 
 // ** update contact us status
-const updateContactUsStatus = async (id: string, status: ContactUsStatus) => {
+const updateContactUsStatus = async (id: string, status: T_UpdateContactUs) => {
   return await prisma.contactUs.update({
     where: { id },
     data: {
-      status,
+      status: status as any,
     },
   });
 };

@@ -3,6 +3,7 @@ import { contactUsRepository } from "../repository/contact-us.repository";
 import { I_PaginationResponse } from "../../../../interface/common.interface";
 import AppError from "../../../../errors/appError";
 import { StatusCodes } from "http-status-codes";
+import { T_NewContactUs, T_UpdateContactUs } from "../types/contact-us.types";
 
 // ** retrieve all contact us from db
 const getContactUsFromDb = async (query?: Record<string, any>) => {
@@ -73,7 +74,7 @@ const searchContactUsFromDb = async (
 };
 
 // ** insert new const us into db
-const creteContactUs = async (payload: ContactUs) => {
+const creteContactUs = async (payload: T_NewContactUs) => {
   return await contactUsRepository.creteContactUs(payload);
 };
 
@@ -89,7 +90,7 @@ const getContactUsById = async (id: string) => {
 };
 
 // ** update contact us status
-const updateContactUsStatus = async (id: string, status: ContactUsStatus) => {
+const updateContactUsStatus = async (id: string, status: T_UpdateContactUs) => {
   const contactUs = await contactUsRepository.getContactUsById(id);
   if (!contactUs) {
     throw new AppError(StatusCodes.NOT_FOUND, "Contact us not found");

@@ -1,5 +1,9 @@
 import { EvaluationManagement } from "@prisma/client";
 import prisma from "../../../../lib/utils/prisma.utils";
+import {
+  T_NewEvaluationManagement,
+  T_UpdateEvaluationManagement,
+} from "../types/evaluation-management.types";
 
 // ** get all evaluating management
 const getAllEvaluatingManagement = async (
@@ -21,7 +25,9 @@ const getSingleEvaluatingManagement = async (id: string) => {
 };
 
 // ** create new EvaluationManagement
-const createNewEvaluationManagement = async (payload: EvaluationManagement) => {
+const createNewEvaluationManagement = async (
+  payload: T_NewEvaluationManagement,
+) => {
   return await prisma.evaluationManagement.create({
     data: payload,
   });
@@ -30,7 +36,7 @@ const createNewEvaluationManagement = async (payload: EvaluationManagement) => {
 // ** update EvaluationManagement
 const updateEvaluationManagement = async (
   id: string,
-  payload: Partial<EvaluationManagement>,
+  payload: T_UpdateEvaluationManagement,
 ) => {
   return await prisma.evaluationManagement.update({
     where: { id },

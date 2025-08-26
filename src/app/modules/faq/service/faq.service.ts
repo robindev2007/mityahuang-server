@@ -2,6 +2,7 @@ import { FAQ } from "@prisma/client";
 import { faqRepository } from "../repository/faq.repository";
 import AppError from "../../../../errors/appError";
 import { HttpStatusCode } from "axios";
+import { T_CreateFAQ, T_UpdateFAQ } from "../types/faq.types";
 
 // ** get all faq
 const getAllFAQ = async (query?: Record<string, any>) => {
@@ -20,12 +21,12 @@ const getSingleFAQ = async (id: string) => {
 };
 
 // ** create FAQ
-const createFAQ = async (payload: FAQ) => {
+const createFAQ = async (payload: T_CreateFAQ) => {
   return await faqRepository.createFAQ(payload);
 };
 
 // ** update faq
-const updateFAQ = async (id: string, payload: FAQ) => {
+const updateFAQ = async (id: string, payload: T_UpdateFAQ) => {
   const faq = await faqRepository.getSingleFAQ(id);
 
   if (!faq) {

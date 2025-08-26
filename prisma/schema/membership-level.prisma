@@ -1,0 +1,11 @@
+model MemberShipLevel {
+    id                           String @id @default(auto()) @map("_id") @db.ObjectId
+    gradeName                    String
+    totalCost                    Int
+    internationalFreightDiscount Int
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("membership_levels")
+}

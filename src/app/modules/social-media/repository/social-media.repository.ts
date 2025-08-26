@@ -1,5 +1,9 @@
 import { SocialMedia } from "@prisma/client";
 import prisma from "../../../../lib/utils/prisma.utils";
+import {
+  T_NewSocialMedia,
+  T_UpdateSocialMedia,
+} from "../types/social-media.types";
 
 // ** get all social media links
 const getAllSocialMedia = async (
@@ -23,7 +27,7 @@ const getSocialMediaById = async (id: string) => {
 };
 
 // ** insert social media into db
-const createSocialMedia = async (payload: SocialMedia) => {
+const createSocialMedia = async (payload: T_NewSocialMedia) => {
   return await prisma.socialMedia.create({
     data: payload,
   });
@@ -35,7 +39,7 @@ const getSocialMediaCount = async () => {
 };
 
 // ** update social media
-const updateSocialMedia = async (id: string, payload: Partial<SocialMedia>) => {
+const updateSocialMedia = async (id: string, payload: T_UpdateSocialMedia) => {
   return await prisma.socialMedia.update({
     where: { id },
     data: payload,

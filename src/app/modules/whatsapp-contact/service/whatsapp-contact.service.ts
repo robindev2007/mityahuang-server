@@ -2,6 +2,7 @@ import { WhatsappContact } from "@prisma/client";
 import { whatsappContactRepository } from "../repository/whatsapp-contact.repository";
 import AppError from "../../../../errors/appError";
 import { StatusCodes } from "http-status-codes";
+import { T_WhatsappContactUpdate } from "../types/whatsapp-contact.types";
 
 // ** get getWhatsappContact
 const getWhatsappContact = async () => {
@@ -10,7 +11,7 @@ const getWhatsappContact = async () => {
 
 // ** update whatsapp contact
 const updateWhatsappContact = async (
-  payload: Partial<WhatsappContact>,
+  payload: T_WhatsappContactUpdate,
   whatsappImageUrl?: string,
 ) => {
   const whatsappContact = await whatsappContactRepository.getWhatsappContact();

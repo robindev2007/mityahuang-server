@@ -3,6 +3,10 @@ import { I_PaginationResponse } from "../../../../interface/common.interface";
 import { promotionLevelRepository } from "../repository/promotion-level.repository";
 import AppError from "../../../../errors/appError";
 import { StatusCodes } from "http-status-codes";
+import {
+  T_NewPromotionalLevel,
+  T_UpdatePromotionalLevel,
+} from "../types/promotion-level.types";
 
 // ** get all promotion level
 const getPromotionLevelFromDb = async (query?: Record<string, any>) => {
@@ -36,7 +40,7 @@ const getPromotionLevelFromDb = async (query?: Record<string, any>) => {
 };
 
 // ** create new promotional level
-const createNewPromotionalLevel = async (payload: PromotionLevel) => {
+const createNewPromotionalLevel = async (payload: T_NewPromotionalLevel) => {
   return await promotionLevelRepository.createNewPromotionalLevel(payload);
 };
 
@@ -67,7 +71,7 @@ const deletePromotionLevelFromDb = async (id: string) => {
 // ** update Promotion level
 const updatePromotionLevelFromDb = async (
   id: string,
-  payload: Partial<PromotionLevel>,
+  payload: T_UpdatePromotionalLevel,
 ) => {
   const result = await promotionLevelRepository.getPromotionLevelById(id);
 

@@ -3,6 +3,7 @@ import { couponRepository } from "../repository/coupon-management.repository";
 import { I_PaginationResponse } from "../../../../interface/common.interface";
 import AppError from "../../../../errors/appError";
 import { HttpStatusCode } from "axios";
+import { T_NewCoupon, T_UpdateCoupon } from "../types/coupon-management.types";
 
 // ** get all Coupon
 const getAllCoupon = async (query?: Record<string, any>) => {
@@ -43,12 +44,12 @@ const getSingleCoupon = async (id: string) => {
 };
 
 // ** create new Coupon
-const createNewCoupon = async (payload: CouponManagement) => {
+const createNewCoupon = async (payload: T_NewCoupon) => {
   return await couponRepository.createNewCoupon(payload);
 };
 
 // ** update Coupon
-const updateCoupon = async (id: string, payload: Partial<CouponManagement>) => {
+const updateCoupon = async (id: string, payload: T_UpdateCoupon) => {
   const coupon = await couponRepository.getSingleCoupon(id);
 
   if (!coupon) {

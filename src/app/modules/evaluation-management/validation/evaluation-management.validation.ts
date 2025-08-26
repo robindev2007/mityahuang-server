@@ -4,7 +4,7 @@ import { normalOrHiddenZodSchema } from "../../../../global-validation/validatio
 const createNewEvaluationManagementSchema = z.object({
   body: z.object({
     memberId: z.string(),
-    score: z.number().positive().min(1).max(5),
+    score: z.number().int().min(1).max(5),
     evaluation: z.string(),
     evaluationData: z.coerce.date(),
     status: normalOrHiddenZodSchema,
@@ -14,7 +14,7 @@ const createNewEvaluationManagementSchema = z.object({
 const updateEvaluationManagementSchema = z.object({
   body: z.object({
     memberId: z.string().optional(),
-    score: z.number().positive().min(1).max(5).optional(),
+    score: z.number().int().min(1).max(5).optional(),
     evaluation: z.string().optional(),
     evaluationData: z.coerce.date().optional(),
     status: normalOrHiddenZodSchema.optional(),

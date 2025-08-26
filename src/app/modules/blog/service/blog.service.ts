@@ -5,6 +5,7 @@ import AppError from "../../../../errors/appError";
 import { HttpStatusCode } from "axios";
 import constructUrlAndImageUploaderUtil from "../../../../lib/utils/constructCloudinaryUrlAndUploadImage";
 import { deleteFileByUrl } from "../../../../lib/utils/unlinkExistingFile";
+import { T_NewBlog, T_UpdateBlog } from "../types/blog.types";
 
 // ** get all blogs
 const getAllBlogs = async (query?: Record<string, any>) => {
@@ -45,7 +46,7 @@ const getSingleBlog = async (id: string) => {
 };
 
 // ** create new blog
-const createNewBlog = async (payload: Blog, file: Express.Multer.File) => {
+const createNewBlog = async (payload: T_NewBlog, file: Express.Multer.File) => {
   if (!file) {
     throw new AppError(
       HttpStatusCode.NotAcceptable,
@@ -64,7 +65,7 @@ const createNewBlog = async (payload: Blog, file: Express.Multer.File) => {
 // ** update blog
 const updateBlog = async (
   id: string,
-  payload: Partial<Blog>,
+  payload: T_UpdateBlog,
   file: Express.Multer.File,
 ) => {
   const blogExist = await blogRepository.getSingleBlog(id);

@@ -5,6 +5,10 @@ import { HttpStatusCode } from "axios";
 import constructUrlAndImageUploaderUtil from "../../../../lib/utils/constructCloudinaryUrlAndUploadImage";
 import { deleteFileByUrl } from "../../../../lib/utils/unlinkExistingFile";
 import { I_PaginationResponse } from "../../../../interface/common.interface";
+import {
+  T_NewSocialMedia,
+  T_UpdateSocialMedia,
+} from "../types/social-media.types";
 
 // ** get all social media
 const getAllSocialMedia = async (query?: Record<string, any>) => {
@@ -49,7 +53,7 @@ const getSocialMediaById = async (id: string) => {
 
 // ** create new social media
 const createSocialMedia = async (
-  payload: SocialMedia,
+  payload: T_NewSocialMedia,
   file: Express.Multer.File,
 ) => {
   if (!file) {
@@ -67,7 +71,7 @@ const createSocialMedia = async (
 // ** update social media
 const updateSocialMedia = async (
   id: string,
-  payload: Partial<SocialMedia>,
+  payload: T_UpdateSocialMedia,
   file: Express.Multer.File,
 ) => {
   const socialMediaExist = await socialMediaRepository.getSocialMediaById(id);

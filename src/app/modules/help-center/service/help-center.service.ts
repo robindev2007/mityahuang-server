@@ -1,5 +1,6 @@
 import { HelpCenter } from "@prisma/client";
 import { helpCenterInfoRepository } from "../repository/help-center.repository";
+import { T_UpdateHelpCenter } from "../types/help-center.types";
 
 // ** get help center info
 const getHelpCenterInfo = async () => {
@@ -17,7 +18,7 @@ const getHelpCenterInfo = async () => {
   return helpCenterInfo;
 };
 
-const updateHelpCenterInfo = async (payload: HelpCenter) => {
+const updateHelpCenterInfo = async (payload: T_UpdateHelpCenter) => {
   let helpCenterInfo = await helpCenterInfoRepository.getHelpCenterInfo();
 
   if (!helpCenterInfo) {

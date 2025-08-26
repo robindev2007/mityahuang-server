@@ -17,6 +17,7 @@ import { FAQRoutes } from "../modules/faq/routes/faq.routes";
 import { serviceManagementRoutes } from "../modules/service-management/routes/service-management.routes";
 import { EvaluationManagementRoutes } from "../modules/evaluation-management/routes/evaluation-management.routes";
 import { CouponRoutes } from "../modules/coupon-management/routes/coupon-management.routes";
+import { MembershipLevelRoutes } from "../modules/membership-level/routes/membership-level.routes";
 
 const routes = Router();
 
@@ -82,6 +83,10 @@ const routesModule: TRouteModules[] = [
   {
     path: "/coupons",
     routes: CouponRoutes,
+  },
+  {
+    path: "/membership-levels",
+    routes: MembershipLevelRoutes,
   },
 
   // Extra but

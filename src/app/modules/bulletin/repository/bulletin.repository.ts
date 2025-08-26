@@ -1,5 +1,6 @@
 import { Bulletin } from "@prisma/client";
 import prisma from "../../../../lib/utils/prisma.utils";
+import { T_NewBulletin, T_UpdateBulletin } from "../types/bulletin.types";
 
 // ** get all bulletin
 const getAllBulletin = async (
@@ -21,14 +22,14 @@ const getSingleBulletin = async (id: string) => {
 };
 
 // ** create new bulletin
-const createNewBulletin = async (payload: Bulletin) => {
+const createNewBulletin = async (payload: T_NewBulletin) => {
   return await prisma.bulletin.create({
     data: payload,
   });
 };
 
 // ** update bulletin
-const updateBulletin = async (id: string, payload: Partial<Bulletin>) => {
+const updateBulletin = async (id: string, payload: T_UpdateBulletin) => {
   return await prisma.bulletin.update({
     where: { id },
     data: payload,

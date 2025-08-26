@@ -3,6 +3,10 @@ import { I_PaginationResponse } from "../../../../interface/common.interface";
 import { serviceManagementRepository } from "../repository/service-management.repository";
 import { HttpStatusCode } from "axios";
 import AppError from "../../../../errors/appError";
+import {
+  T_CreateServiceManagement,
+  T_UpdateServiceManagement,
+} from "../types/service-management.types";
 
 // ** get all service management
 const getAllServiceManagements = async (query?: Record<string, any>) => {
@@ -49,14 +53,16 @@ const getSingleServiceManagement = async (id: string) => {
 };
 
 // ** create new service Management
-const createNewServiceManagement = async (payload: ServiceManagement) => {
+const createNewServiceManagement = async (
+  payload: T_CreateServiceManagement,
+) => {
   return await serviceManagementRepository.createNewServiceManagement(payload);
 };
 
 // ** update new service Management
 const updateServiceManagement = async (
   id: string,
-  payload: ServiceManagement,
+  payload: T_UpdateServiceManagement,
 ) => {
   const existedServiceManagement =
     await serviceManagementRepository.getSingleServiceManagement(id);

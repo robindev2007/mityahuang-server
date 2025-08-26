@@ -3,6 +3,10 @@ import { I_PaginationResponse } from "../../../../interface/common.interface";
 import { evaluationManagementRepository } from "../repository/evaluation-management.repository";
 import AppError from "../../../../errors/appError";
 import { HttpStatusCode } from "axios";
+import {
+  T_NewEvaluationManagement,
+  T_UpdateEvaluationManagement,
+} from "../types/evaluation-management.types";
 
 // ** get all Evaluation Management
 const getAllEvaluationManagement = async (query?: Record<string, any>) => {
@@ -53,7 +57,9 @@ const getSingleEvaluationManagement = async (id: string) => {
 };
 
 // ** create new Evaluation Management
-const createNewEvaluationManagement = async (payload: EvaluationManagement) => {
+const createNewEvaluationManagement = async (
+  payload: T_NewEvaluationManagement,
+) => {
   return await evaluationManagementRepository.createNewEvaluationManagement(
     payload,
   );
@@ -62,7 +68,7 @@ const createNewEvaluationManagement = async (payload: EvaluationManagement) => {
 // ** update Evaluation Management
 const updateEvaluationManagement = async (
   id: string,
-  payload: Partial<EvaluationManagement>,
+  payload: T_UpdateEvaluationManagement,
 ) => {
   const EvaluationManagement =
     await evaluationManagementRepository.getSingleEvaluatingManagement(id);

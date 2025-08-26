@@ -1,5 +1,9 @@
 import { ServiceManagement } from "@prisma/client";
 import prisma from "../../../../lib/utils/prisma.utils";
+import {
+  T_CreateServiceManagement,
+  T_UpdateServiceManagement,
+} from "../types/service-management.types";
 
 // ** get all service management
 const getAllServiceManagements = async (
@@ -21,7 +25,9 @@ const getSingleServiceManagement = async (id: string) => {
 };
 
 // ** create service management
-const createNewServiceManagement = async (payload: ServiceManagement) => {
+const createNewServiceManagement = async (
+  payload: T_CreateServiceManagement,
+) => {
   return await prisma.serviceManagement.create({
     data: payload,
   });
@@ -30,7 +36,7 @@ const createNewServiceManagement = async (payload: ServiceManagement) => {
 // ** update service management
 const updateServiceManagement = async (
   id: string,
-  payload: Partial<ServiceManagement>,
+  payload: T_UpdateServiceManagement,
 ) => {
   return await prisma.serviceManagement.update({
     where: { id },
