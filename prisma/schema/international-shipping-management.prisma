@@ -1,0 +1,31 @@
+//  TODO create nation enum
+
+model InternationalShipping {
+    id                    String               @id @default(auto()) @map("_id") @db.ObjectId
+    distributionMode      String
+    billingType           String
+    shippingTime          String
+    firstWeight           Int
+    continue              Int
+    firstWeightCharge     Int
+    renewalCharge         Int
+    fuelCost              Int
+    customsDeclarationFee Int
+    serviceCharge         Int
+    volumeRatio           Int
+    freeShippingAllowance Int
+    floatingWeight        Int
+    weightIntervalFrom    Int
+    weightIntervalTo      Int
+    maximumWidth          Int
+    maximumLength         Int
+    maximumHeight         Int
+    lineCharacteristics   LineCharacteristics
+    nation                String
+    status                NormalOrHiddenStatus
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("international_shippings")
+}

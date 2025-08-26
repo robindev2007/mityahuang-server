@@ -1,0 +1,29 @@
+model Warehouse {
+    id      String               @id @default(auto()) @map("_id") @db.ObjectId
+    name    String               @unique
+    shelves Shelf[]
+    status  NormalOrHiddenStatus
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("warehouses")
+}
+
+model Shelf {
+    id          String    @id @default(auto()) @map("_id") @db.ObjectId
+    warehouseId String    @db.ObjectId
+    warehouse   Warehouse @relation(fields: [warehouseId], references: [id])
+    storages    Storage[]
+
+    @@map("shelves")
+}
+
+model Storage {
+    id      String  @id @default(auto()) @map("_id") @db.ObjectId
+    isFree  Boolean
+    shelfId String  @db.ObjectId
+    Shelf   Shelf   @relation(fields: [shelfId], references: [id])
+
+    @@map("storages")
+}

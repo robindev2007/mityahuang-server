@@ -20,6 +20,7 @@ const globalErrorHandler = (
   res: Response,
   __next: NextFunction,
 ) => {
+  console.log(error);
   // Default values
   let statusCode = 500;
   let message = "Something went wrong!";

@@ -70,3 +70,9 @@ enum CouponUse {
     Order
     Waybill
 }
+
+enum LineCharacteristics {
+    England
+    Spain
+    United_Kingdom
+}

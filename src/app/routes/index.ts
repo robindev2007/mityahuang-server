@@ -18,6 +18,8 @@ import { serviceManagementRoutes } from "../modules/service-management/routes/se
 import { EvaluationManagementRoutes } from "../modules/evaluation-management/routes/evaluation-management.routes";
 import { CouponRoutes } from "../modules/coupon-management/routes/coupon-management.routes";
 import { MembershipLevelRoutes } from "../modules/membership-level/routes/membership-level.routes";
+import { InternationalShippingRoutes } from "../modules/international-shipping-management/routes/international-shipping-management.routes";
+import { WarehouseRoutes } from "../modules/warehouse-management/routes/warehouse-management.routes";
 
 const routes = Router();
 
@@ -87,6 +89,14 @@ const routesModule: TRouteModules[] = [
   {
     path: "/membership-levels",
     routes: MembershipLevelRoutes,
+  },
+  {
+    path: "/international-shippings",
+    routes: InternationalShippingRoutes,
+  },
+  {
+    path: "/warehouses",
+    routes: WarehouseRoutes,
   },
 
   // Extra but
